@@ -1,1 +1,102 @@
+.aboutProject {
+	max-width: 1140px;
+	width: 100%;
+	margin: 0 auto;
+	
+}
 
+.aboutProject__heder {
+  padding-top: 110px;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+.aboutProject__description {
+  margin: 0 auto 23px;
+}
+
+.aboutProject__block {
+  display: flex;
+  gap: 40px;
+  margin: 0 auto;
+  padding-top: 70px;
+}
+
+.aboutProject__title {
+  margin: 0;
+  font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 24px;
+	color: #000000;
+}
+
+.aboutProject__paragraph {
+  margin: 0;
+  padding-top: 26px;
+  font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #000000;
+}
+
+.aboutProject__term {
+	padding-top: 110px;
+	display: flex;
+	height: 36px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+	color: #000000;
+}
+
+.aboutProject__term-blockOne {
+	background-color: rgba(43, 224, 128, 1);
+	display: flex;
+	max-width: 228px;
+	width: 100%;
+}
+
+.aboutProject__term-blockFour {
+	display: flex;
+	background-color: rgba(242, 242, 242, 1);
+	width: 100%;
+}
+
+.aboutProject__term-one {
+	margin: auto;
+	text-align: center;
+}
+
+.aboutProject__term-four {
+	margin: auto;
+	text-align: center;
+}
+
+.aboutProject__subtitle {
+	display: flex;
+	text-align: center;
+	padding-top: 14px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 17px;
+	color: #A0A0A0;
+}
+
+.aboutProject__subtitle-one {
+	margin: 0 auto;
+	max-width: 228px;
+	width: 100%;
+}
+
+.aboutProject__subtitle-four {
+	width: 100%;
+	margin: 0 auto;
+}

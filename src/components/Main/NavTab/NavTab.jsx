@@ -4,7 +4,6 @@ import './NavTab.css';
 const NavTab = () => {
   return (
     <nav className="nav_menu">
-			<h1 className='nav_header'>Учебный проект студента факультета Веб-разработки.</h1>
       <ul className='nav_content'>
         <li className='nav_btn'>
           <a href="#" className='nav_text'>О проекте</a>

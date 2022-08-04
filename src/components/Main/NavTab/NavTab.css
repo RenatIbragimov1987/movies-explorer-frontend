@@ -1,32 +1,22 @@
 .nav_menu {
-	background-color: rgba(245, 245, 245, 1);
-	max-width: 1200px;
-	min-height: 493px;
+	max-width: 1140px;
 	width: 100%;
-	margin: 0 auto;
-	margin-top: 38px;
-	border-radius: 10px;
-}
-
-.nav_header {
-	max-width: 730px;
-	width: 100%;
-	margin: 0 auto;
-	padding-top: 160px;
-	text-align: center;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
 	font-size: 50px;
 	line-height: 58px;
 	color: #000000;
+	position: relative;
+	margin: 0 auto;
 }
 
 .nav_content {
 	display: flex;
-	gap: 10px;
+	flex-wrap: wrap;
 	margin: 0 auto;
-	padding-top: 151px;
+	width: 100%;
+	gap: 10px;
 	justify-content: center;
 	list-style-type: none;
 	font-family: 'Inter';
@@ -35,6 +25,10 @@
 	font-size: 12px;
 	line-height: 16px;
 	color: #000000;
+	position: absolute;
+	top: -66px;
+	
+	padding: 0;
 }
 
 .nav_btn {
