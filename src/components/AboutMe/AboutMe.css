@@ -1,0 +1,79 @@
+.aboutMe {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 110px;
+  /* min-height: 625px; */
+  font-family: 'Inter', 'Arial', sans-serif;
+  color: #000000;
+}
+
+.aboutMe__heder {
+  max-width: 1140px;
+  width: 100%;
+  /* padding-top: 110px; */
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+.aboutMe__description {
+  margin: 0 auto 23px;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26.5px;
+}
+.aboutMe__info {
+  display: flex;
+  padding-top: 66px;
+  justify-content: space-between;
+}
+
+.aboutMe__text {
+  max-width: 600px;
+  width: 100%;
+}
+
+.aboutMe__name {
+  margin: 0;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+}
+.aboutMe__title {
+  padding-top: 18px;
+  margin: 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.aboutMe__subtitle {
+  padding-top: 26px;
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.aboutMe__link {
+  display: flex;
+  gap: 20px;
+  padding-top: 99px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.aboutMe__link a:hover {
+	opacity: 70%;
+}
+
+.aboutMe__link-site {
+  text-decoration: none;
+  color: inherit;
+}
+
+.aboutMe__foto {
+  max-width: 270px;
+  max-height: 327px;
+  border-radius: 10px;
+}

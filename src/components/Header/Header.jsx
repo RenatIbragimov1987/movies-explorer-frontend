@@ -5,10 +5,12 @@ import './Header.css';
 const Header = () => {
   return (
     <header className='header'>
-			<img src={logoHeader} alt="logo"/>
-			<div className='header_nav'>
-				<button className='header_reg'>Регистрация</button>
-				<button className='header_log'>Войти</button>
+			<a href="#$" className='header__logo'>
+				<img src={logoHeader} alt="logo"/>
+			</a>
+			<div className='header__nav'>
+				<a href='#$' className='header__reg'>Регистрация</a>
+				<button href='#$' className='header__log'>Войти</button>
 			</div>
 			
     </header>

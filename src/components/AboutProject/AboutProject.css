@@ -2,7 +2,8 @@
 	max-width: 1140px;
 	width: 100%;
 	margin: 0 auto;
-	
+	font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+	color: #000000;
 }
 
 .aboutProject__heder {
@@ -13,6 +14,9 @@
 
 .aboutProject__description {
   margin: 0 auto 23px;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26.5px;
 }
 
 .aboutProject__block {
@@ -24,35 +28,25 @@
 
 .aboutProject__title {
   margin: 0;
-  font-family: 'Inter';
-	font-style: normal;
-	font-weight: 400;
 	font-size: 20px;
 	line-height: 24px;
-	color: #000000;
 }
 
 .aboutProject__paragraph {
   margin: 0;
   padding-top: 26px;
-  font-family: 'Inter';
-	font-style: normal;
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 20px;
-	color: #000000;
 }
 
 .aboutProject__term {
 	padding-top: 110px;
 	display: flex;
 	height: 36px;
-	font-family: 'Inter';
-	font-style: normal;
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 17px;
-	color: #000000;
 }
 
 .aboutProject__term-blockOne {
@@ -82,8 +76,6 @@
 	display: flex;
 	text-align: center;
 	padding-top: 14px;
-	font-family: 'Inter';
-	font-style: normal;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 17px;

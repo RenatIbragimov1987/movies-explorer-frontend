@@ -1,0 +1,49 @@
+.filter {
+	display: flex;
+	margin: 0 auto;
+	/* border-left: 1px solid rgba(232, 232, 232, 1); */
+	border-left: 1px solid rgba(232, 232, 232, 1);
+	max-width: 226px;
+	width: 100%;
+	height: 40px;
+}
+.filter__form {
+	display: flex;
+	margin: 0 auto;
+	gap: 14px;
+	align-items: center;
+	position: relative;
+}
+
+.filter__field {
+	width: 36px;
+	height: 20px;
+	outline: none;
+	-webkit-appearance: none;
+	border-radius: 20px;
+	background: #EBEBEB;
+	transition: .5s;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+}
+
+.filter__field:checked {
+	background-color: #2BE080;
+	transition: .5s;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+}
+
+.filter__circle{
+  background-color: #FFFFFF;
+	width: 16px;
+	height: 16px;
+	border-radius: 8px;
+	position: absolute;
+	top: 11.8px;
+	left: 18px;
+	cursor: pointer;
+}
+.filter__circle::before {
+	transition: .5s;
+	transform: scale(1.1);
+	top: 10px;
+}
