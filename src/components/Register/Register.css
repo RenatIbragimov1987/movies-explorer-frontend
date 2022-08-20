@@ -1,1 +1,131 @@
+.register {
+  max-width: 396px;
+  padding: 0;
+  width: 100%;
+  align-items: center;
+  margin: 70px auto 0;
+  font-family: 'Inter', 'Arial', sans-serif;
+  color: #000000;
+}
+@media screen and (max-width: 768px) {
+  .register {
+    margin: 232px auto 0;
+  }
+}
+@media screen and (max-width: 320px) {
+  .register {
+    margin: 38px auto 0;
+    max-width: 260px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .register__header {
+    display: flex;
+    max-width: 260px;
+    margin-left: 111px;
+  }
+}
+.register__set {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-align: center;
+}
+.register__title {
+  font-weight: 500;
+  font-size: 24px;
+  text-align: start;
+  line-height: 29px;
+  padding: 21px 0 14px;
+  margin: 0;
+}
+@media screen and (max-width: 320px) {
+  .register__title {
+    margin-top: 11px;
+    margin-bottom: 64px;
+    text-align: center;
+  }
+}
+.register__label {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  margin-top: 24px;
+}
 
+.register__label {
+  display: flex;
+  margin-bottom: 5px;
+  padding: 0;
+  color: #a0a0a0;
+}
+.register__field {
+  max-width: 396px;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 0 0 10px;
+  box-shadow: 0 1px 0 #e8e8e8;
+}
+
+.register__field:focus {
+  box-shadow: 0 1px 0 #ff6838;
+}
+
+.register__field:invalid {
+  color: #ff6838;
+}
+
+.register__submit-button {
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  font: inherit;
+  color: #ffffff;
+  cursor: pointer;
+  max-width: 396px;
+  width: 100%;
+  height: 45px;
+  background-color: #ff6838;
+  margin-top: 148px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+@media screen and (max-width: 320px) {
+  .register__submit-button {
+    margin-top: 235px;
+  }
+}
+
+.register__question {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  margin-top: 16px;
+  color: #a0a0a0;
+}
+@media screen and (max-width: 320px) {
+  .register__question {
+    font-size: 12px;
+    line-height: 14.5px;
+  }
+}
+.register__questio-link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  align-items: center;
+  color: #ff6838;
+  text-decoration: none;
+}
+
+.register__questio-link:hover {
+  opacity: 70%;
+  text-decoration: underline;
+}

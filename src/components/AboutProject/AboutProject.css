@@ -1,15 +1,36 @@
 .aboutProject {
-	max-width: 1140px;
-	width: 100%;
-	margin: 0 auto;
-	font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
-	color: #000000;
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto 110px;
+  font-family: 'Inter', 'Arial', sans-serif;
+  color: #000000;
+}
+@media screen and (max-width: 768px) {
+  .aboutProject {
+    max-width: 668px;
+    margin: 0 auto 90px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .aboutProject {
+    max-width: 284px;
+    margin: 0 auto 70px;
+  }
 }
 
 .aboutProject__heder {
   padding-top: 110px;
-  width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+@media screen and (max-width: 768px) {
+  .aboutProject__heder {
+    padding-top: 90px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .aboutProject__heder {
+    padding-top: 70px;
+  }
 }
 
 .aboutProject__description {
@@ -18,6 +39,13 @@
   font-size: 22px;
   line-height: 26.5px;
 }
+@media screen and (max-width: 320px) {
+  .aboutProject__description {
+    margin: 0 auto 29px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
 
 .aboutProject__block {
   display: flex;
@@ -25,70 +53,139 @@
   margin: 0 auto;
   padding-top: 70px;
 }
+@media screen and (max-width: 320px) {
+  .aboutProject__block {
+    display: inline-block;
+    padding-top: 60px;
+  }
+}
 
 .aboutProject__title {
   margin: 0;
-	font-size: 20px;
-	line-height: 24px;
+  font-size: 20px;
+  line-height: 24px;
+}
+@media screen and (max-width: 320px) {
+  .aboutProject__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .boutProject__container:not(:first-child) {
+    margin-top: 56px;
+  }
 }
 
 .aboutProject__paragraph {
   margin: 0;
   padding-top: 26px;
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+@media screen and (max-width: 768px) {
+  .aboutProject__paragraph {
+    padding-top: 23px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .aboutProject__paragraph {
+    padding-top: 16px;
+    font-size: 11px;
+    line-height: 16px;
+  }
 }
 
 .aboutProject__term {
-	padding-top: 110px;
-	display: flex;
-	height: 36px;
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 17px;
+  padding-top: 110px;
+  display: flex;
+  height: 36px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+@media screen and (max-width: 768px) {
+  .aboutProject__term {
+    padding-top: 92px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .aboutProject__term {
+    font-size: 11px;
+    line-height: 13.5px;
+    height: 35px;
+  }
 }
 
 .aboutProject__term-blockOne {
-	background-color: rgba(43, 224, 128, 1);
-	display: flex;
-	max-width: 228px;
-	width: 100%;
+  background-color: rgba(43, 224, 128, 1);
+  display: flex;
+  max-width: 228px;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .aboutProject__term-blockOne {
+    max-width: 140px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .aboutProject__term-blockOne {
+    max-width: 100px;
+  }
 }
 
 .aboutProject__term-blockFour {
-	display: flex;
-	background-color: rgba(242, 242, 242, 1);
-	width: 100%;
+  display: flex;
+  background-color: rgba(242, 242, 242, 1);
+  width: 100%;
 }
 
-.aboutProject__term-one {
-	margin: auto;
-	text-align: center;
-}
-
-.aboutProject__term-four {
-	margin: auto;
-	text-align: center;
+.aboutProject__term-title {
+  margin: auto;
+  text-align: center;
 }
 
 .aboutProject__subtitle {
-	display: flex;
-	text-align: center;
-	padding-top: 14px;
-	font-weight: 500;
-	font-size: 14px;
-	line-height: 17px;
-	color: #A0A0A0;
+  display: flex;
+  text-align: center;
+  padding-top: 14px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #a0a0a0;
+}
+@media screen and (max-width: 768px) {
+  .aboutProject__subtitle {
+    font-weight: 400;
+  }
+}
+@media screen and (max-width: 320px) {
+  .aboutProject__subtitle {
+    font-size: 11px;
+    line-height: 13px;
+  }
 }
 
-.aboutProject__subtitle-one {
-	margin: 0 auto;
-	max-width: 228px;
-	width: 100%;
+.aboutProject__subtitle-back {
+  margin: 0 auto;
+  max-width: 228px;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .aboutProject__subtitle-back {
+    max-width: 140px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .aboutProject__subtitle-back {
+    max-width: 100px;
+  }
 }
 
 .aboutProject__subtitle-four {
-	width: 100%;
-	margin: 0 auto;
+  width: 100%;
+  margin: 0 auto;
 }

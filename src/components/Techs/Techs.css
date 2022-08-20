@@ -1,69 +1,151 @@
 .techs {
-    background-color: #F5F5F5;
-	max-width: 1280px;
-	width: 100%;
-	margin: 0 auto;
-    margin-top: 110px;
-	min-height: 625px;
-    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
-	color: #000000;
+  background-color: #f5f5f5;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 100px;
+  font-family: 'Inter', 'Arial', sans-serif;
+  color: #000000;
+}
+@media screen and (max-width: 768px) {
+  .techs {
+    max-width: 768px;
+    padding-bottom: 90px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .techs {
+    padding-bottom: 70px;
+    background-color: #ffffff;
+  }
 }
 
 .techs__heder {
-    max-width: 1140px;
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 100px;
-    border-bottom: 1px solid rgba(0, 0, 0, 1);
-  }
-  
-  .techs__description {
-    margin: 0 auto 23px;
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 26.5px;
-  }
-
-  .techs__title {
-    max-width: 600px;
-    margin: 0 auto;
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 100px;
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+@media screen and (max-width: 768px) {
+  .techs__heder {
+    max-width: 668px;
     padding-top: 90px;
-    text-align: center;
-    font-weight: 400;
-    font-size: 50px;
-    line-height: 58px;
   }
+}
+@media screen and (max-width: 320px) {
+  .techs__heder {
+    max-width: 284px;
+    padding-top: 70px;
+  }
+}
 
+.techs__description {
+  margin: 0 auto 23px;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26.5px;
+}
+@media screen and (max-width: 768px) {
+  .techs__description {
+    margin: 0 auto 24px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .techs__description {
+    margin: 0 auto 26px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.techs__title {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-top: 90px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+}
+@media screen and (max-width: 768px) {
+  .techs__title {
+    padding-top: 79px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .techs__title {
+    padding-top: 60px;
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+
+.techs__subtitle {
+  max-width: 460px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 26px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+@media screen and (max-width: 768px) {
   .techs__subtitle {
-    max-width: 460px;
-    min-height: 40px;
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 26px;
-    text-align: center;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
+    padding-top: 22px;
+    font-size: 12px;
+    line-height: 18px;
   }
+}
+@media screen and (max-width: 320px) {
+  .techs__subtitle {
+    padding-top: 24px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
 
+.techs__block {
+  margin: 100px 0 0;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
   .techs__block {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
+    margin: 84px 0 0;
   }
+}
+@media screen and (max-width: 320px) {
+  .techs__block {
+    max-width: 178px;
+    width: 100%;
+    justify-content: flex-start;
+    margin: 50px auto 0;
+  }
+}
 
+.techs__block-title {
+  background-color: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 60px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+@media screen and (max-width: 768px) {
   .techs__block-title {
-      background-color: #E8E8E8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 90px;
-      height: 60px;
-      border-radius: 10px;
-      text-align: center;
-      margin-top: 100px;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 17px;
+    width: 84px;
+    height: 57px;
+    font-size: 12px;
+    line-height: 15px;
   }
+}

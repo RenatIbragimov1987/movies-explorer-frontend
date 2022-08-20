@@ -11,10 +11,18 @@ const Footer = () => {
       <div className="footer__content">
         <p className="footer__copyright">&copy;{year}</p>
         <div className="footer__block">
-          <a href="https://practicum.yandex.ru/" target='_blanc' className="footer__link">
+          <a
+            href="https://practicum.yandex.ru/"
+            target="_blanc"
+            className="footer__link"
+          >
             Яндекс.Практикум
           </a>
-          <a href="https://github.com/RenatIbragimov1987" target='_blanc' className="footer__link">
+          <a
+            href="https://github.com/RenatIbragimov1987"
+            target="_blanc"
+            className="footer__link"
+          >
             Github
           </a>
           <a href="#$" className="footer__link">
