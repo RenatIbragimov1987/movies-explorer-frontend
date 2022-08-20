@@ -12,3 +12,6 @@
   background-color: #f9f9f9;
   cursor: pointer;
 }
+.moviesCardDelete:hover {
+	opacity: 70%;
+}

@@ -4,7 +4,7 @@ import Foto from '../../images/FotoUser.jpg';
 
 const AboutMe = () => {
   return (
-    <div className="aboutMe" id="student">
+    <section className="aboutMe" id="student">
       <div className="aboutMe__heder">
         <h2 className="aboutMe__description">Студент</h2>
       </div>
@@ -20,7 +20,11 @@ const AboutMe = () => {
             заниматься фриланс-заказами и ушёл с постоянной работы.
           </p>
           <div className="aboutMe__link">
-            <a href="#&" className="aboutMe__link-site">
+            <a
+              href="https://rkn.gov.ru/news/rsoc/news74156.htm?utm_source=google.com&utm_medium=organic&utm_campaign=google.com&utm_referrer=google.com"
+              target="_blanc"
+              className="aboutMe__link-site"
+            >
               Facebook
             </a>
             <a
@@ -34,7 +38,7 @@ const AboutMe = () => {
         </div>
         <img className="aboutMe__foto" src={Foto} alt="pics" />
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -59,12 +59,12 @@
 }
 
 [id='nav-toggle']:checked ~ .novigation__nav > .nav-toggle:after {
-  content: '\2716';
+  content: url("../../images/navCloseButton.svg");
 }
 
 [id='nav-toggle']:checked ~ .novigation__nav > .nav-toggle {
   margin-top: -20px;
-  margin-right: 14px;
+  margin-right: 12px;
 }
 
 .nav-toggle {

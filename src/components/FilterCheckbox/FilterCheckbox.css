@@ -67,6 +67,10 @@
   transition: 0.2s;
   cursor: pointer;
 }
+.filter__switch:hover {
+	opacity: 70%;
+}
+
 .filter__switch:before {
   content: '';
   position: absolute;

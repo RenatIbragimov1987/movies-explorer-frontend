@@ -11,6 +11,9 @@
   text-align: center;
   margin: 0 auto;
 }
+.moviesCard__save:hover {
+	opacity: 70%;
+}
 .moviesCard__svg {
   position: relative;
   top: 8.5px;

@@ -11,7 +11,7 @@ import Footer from '../Footer/Footer';
 
 const Main = () => {
   return (
-    <div>
+    <main>
       <Header modifier="header__account_none" modifierNav="novigation_none" />
       <Promo />
       <NavTab />
@@ -20,7 +20,7 @@ const Main = () => {
       <AboutMe />
       <Portfolio />
       <Footer />
-    </div>
+    </main>
   );
 };
 
