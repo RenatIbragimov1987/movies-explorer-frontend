@@ -8,10 +8,12 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Navigation from '../Navigation/Navigation';
 
-const Movies = () => {
+
+const Movies = ({isLoggedIn}) => {
+
   return (
     <>
-      <Header modifierMovi="header__nav_none" />
+      <Header modifierMovi="header__nav_none" isLoggedIn={isLoggedIn} />
       <Navigation />
       <SearchForm />
       <Preloader />

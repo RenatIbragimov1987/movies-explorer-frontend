@@ -6,8 +6,8 @@ function Navigation({ modifierNav = '' }) {
   return (
     <div className={`novigation ${modifierNav}`}>
       <input type="checkbox" id="nav-toggle" hidden></input>
-      <nav class="novigation__nav">
-        <label for="nav-toggle" class="nav-toggle"></label>
+      <nav className="novigation__nav">
+        <label htmlFor="nav-toggle" className="nav-toggle"></label>
         <ul>
           <li>
             <Link to="/" className="navigation__text">
@@ -35,7 +35,7 @@ function Navigation({ modifierNav = '' }) {
         </ul>
       </nav>
 
-      <div class="mask-content"></div>
+      <div className="mask-content"></div>
     </div>
   );
 }

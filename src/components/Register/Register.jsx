@@ -3,9 +3,29 @@ import './Register.css';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 
-const Register = () => {
+const Register = ({registration}) => {
+	const [name, setName] = React.useState("");
+	const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+	 function handleSubmit(evt) {
+    evt.preventDefault();
+    registration(name, email, password);
+  }
+
+	function handleChangeName(evt) {
+    setName(evt.target.value);
+  }
+
+  function handleChangeEmail(evt) {
+    setEmail(evt.target.value);
+  }
+ 
+  function handleChangePassword(evt) {
+    setPassword(evt.target.value);
+  }
   return (
-    <form className="register">
+    <form onSubmit={handleSubmit} className="register">
       <header className="register__header">
         <Header
           modifierMovi="header__nav_none"
@@ -18,6 +38,8 @@ const Register = () => {
           Имя
         </label>
         <input
+					value={name}
+					name='name'
           autoComplete="off"
           type="text"
           minLength="2"
@@ -25,12 +47,15 @@ const Register = () => {
           required
           className="register__field"
           id="first-name"
+					onChange={handleChangeName}
         />
         <span className="form__input-error email-input-error"></span>
         <label htmlFor="first-email" className="register__label">
           E-mail
         </label>
         <input
+					value={email}
+					name='email'
           autoComplete="off"
           type="email"
           minLength="3"
@@ -38,24 +63,27 @@ const Register = () => {
           required
           className="register__field"
           id="first-email"
+					onChange={handleChangeEmail}
         />
         <span className="form__input-error email-input-error"></span>
         <label htmlFor="first-password" className="register__label">
           Пароль
         </label>
         <input
+					value={password}
+					name='password'
           autoComplete="off"
           type="password"
           minLength="6"
           maxLength="50"
-          name="password"
           required
           className="register__field"
           id="first-password"
+					onChange={handleChangePassword}
         />
         <span className="form__input-error email-input-error"></span>
       </fieldset>
-      <button className="register__submit-button" type="submit">
+      <button onSubmit={handleSubmit} className="register__submit-button" type="submit">
         Зарегистрироваться
       </button>
       <p className="register__question">

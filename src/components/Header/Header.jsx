@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import logoHeader from '../../images/logo.svg';
 import './Header.css';
 
-function Header({ modifier = '', modifierMovi = '' }) {
+function Header({ modifier = '', modifierMovi = '', isLoggedIn }) {
   return (
+		
     <header className="header">
+			
       <Link to="/" className="header__logo">
         <img src={logoHeader} alt="logo" />
       </Link>
-      <nav className={`header__movies-block ${modifier}`}>
+			{isLoggedIn && 
+      <nav className='header__movies-block'>
         <Link to="/movies" className="header__movies">
           Фильмы
         </Link>
@@ -17,6 +20,8 @@ function Header({ modifier = '', modifierMovi = '' }) {
           Сохраненные фильмы
         </Link>
       </nav>
+			}
+			{!isLoggedIn &&
       <nav className={`header__nav ${modifierMovi}`}>
         <Link to="/signup" className="header__reg">
           Регистрация
@@ -25,9 +30,12 @@ function Header({ modifier = '', modifierMovi = '' }) {
           Войти
         </Link>
       </nav>
-      <Link to="/profile" className={`header__account ${modifier}`}>
+			}
+			{isLoggedIn &&
+      <Link to="/profile" className='header__account'>
         Аккаунт
       </Link>
+			}
     </header>
   );
 }

@@ -9,10 +9,11 @@ import Portfolio from '../Portfolio/Portfolio';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-const Main = () => {
+const Main = ({ isLoggedIn }) => {
+	
   return (
     <main>
-      <Header modifier="header__account_none" modifierNav="novigation_none" />
+      <Header modifier="header__account_none" modifierNav="novigation_none" isLoggedIn={isLoggedIn} />
       <Promo />
       <NavTab />
       <AboutProject />

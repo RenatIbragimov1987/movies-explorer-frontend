@@ -3,7 +3,9 @@ import './MoviesCard.css';
 import image from '../../images/img/pic(1).png';
 import DeleteSaveBtn from '../DeleteSaveBtn/DeleteSaveBtn';
 
+
 const MoviesCard = ({ ButtonSave }) => {
+
   return (
     <li className="moviesCard">
       <div className="moviesCard__block">
