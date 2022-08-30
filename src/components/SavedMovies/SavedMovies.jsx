@@ -13,9 +13,9 @@ const SavedMovies = ({isLoggedIn}) => {
       <Navigation />
       <SearchForm />
       <div className="savedMovies">
-        {[...Array(3)].map((card, index) => (
+        {/* {[...Array(3)].map((card, index) => (
           <MoviesCard key={index} />
-        ))}
+        ))} */}
       </div>
       <Footer />
     </div>

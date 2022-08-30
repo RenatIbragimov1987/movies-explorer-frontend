@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurentUserContext';
 import './App.css';
@@ -11,14 +11,18 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import auth from '../../utils/Auth';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import api from '../../utils/MoviesApi';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [errorLogin, setErrorLogin] = useState('');
 	
+	const history = useHistory();
+	
+	
  
-  const history = useHistory();
+  
 
   const [data, setData] = useState({
 		name: '',
@@ -35,7 +39,10 @@ const App = () => {
     }
   };
 
-
+	// useEffect(() => {
+	// 	localStorage.setItem(api.loadingMovies())
+			
+	// })
 	
   //регистрация
   function registration(name, email, password) {
@@ -114,6 +121,8 @@ const App = () => {
             path="/movies"
             component={Movies}
             isLoggedIn={isLoggedIn}
+						// cards={cards}
+						// setCards={setCards}
           />
           <ProtectedRoute
             path="/saved-movies"

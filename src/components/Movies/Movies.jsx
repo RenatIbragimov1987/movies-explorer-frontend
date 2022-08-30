@@ -7,9 +7,15 @@ import Preloader from '../Preloader/Preloader';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Navigation from '../Navigation/Navigation';
-
+import { useState, useEffect } from 'react';
+import { CurrentUserContext } from '../../contexts/CurentUserContext';
+import { useContext } from 'react';
+import api from '../../utils/MoviesApi';
 
 const Movies = ({isLoggedIn}) => {
+	const currentUser = useContext(CurrentUserContext);
+
+	
 
   return (
     <>
@@ -17,7 +23,7 @@ const Movies = ({isLoggedIn}) => {
       <Navigation />
       <SearchForm />
       <Preloader />
-      <MoviesCardList />
+			<MoviesCardList/>
       <ButtonYet />
       <Footer />
     </>

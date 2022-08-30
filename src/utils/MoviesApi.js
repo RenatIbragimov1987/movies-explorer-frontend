@@ -40,13 +40,13 @@ class MoviesApi {
 
   // загрузка фильмов с сервера
   loadingMovies() {
-    return fetch(this._address, {
+    return fetch(`${this._address}/beatfilm-movies`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      credentials: 'include',
+      // credentials: 'include',
     }).then((res) => this._checkStatus(res));
   }
 
@@ -63,13 +63,10 @@ class MoviesApi {
       credentials: 'include',
     }).then((res) => this._checkStatus(res));
   };
-
-
-
 }
 
 const api = new MoviesApi({
-  address: 'https://api.nomoreparties.co/beatfilm-movies',
+  address: 'https://api.nomoreparties.co',
 });
 
 export default api;
