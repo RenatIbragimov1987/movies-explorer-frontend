@@ -16,7 +16,7 @@ const MoviesCard = ({ ButtonSave, card }) => {
         {ButtonSave ? <ButtonSave /> : <DeleteSaveBtn />}
       </div>
 			<a href={card.trailerLink} target="_blank">
-      <img src={card.image} className="moviesCard__image" alt={card.nameRU} />
+      <img src={card.image.url} className="moviesCard__image" alt={card.nameRU} />
 		</a>
     </li>
   );

@@ -37,7 +37,7 @@ class Auth {
     }).then(this._checkResponse);
   }
 
-	//выход
+  //выход
   userSignout = () => {
     return fetch(`${this._backendUrl}/signout`, {
       method: 'POST',
@@ -49,7 +49,7 @@ class Auth {
     }).then(this._checkResponse);
   };
 
-	//редактирование профиля
+  //редактирование профиля
   profileEditing = ({ name, email }) => {
     return fetch(`${this._backendUrl}/users/me`, {
       method: 'PATCH',
@@ -65,16 +65,16 @@ class Auth {
     }).then(this._checkResponse);
   };
 
-  // getContent = () => {
-  //   return fetch(`${this._backendUrl}/users/me`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     credentials: 'include',
-  //   }).then(this._checkResponse);
-  // };
+  getUserInfo = () => {
+    return fetch(`${this._backendUrl}/users/me`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    }).then(this._checkResponse);
+  };
 }
 
 const auth = new Auth({

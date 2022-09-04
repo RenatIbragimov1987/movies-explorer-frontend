@@ -102,6 +102,29 @@
   }
 }
 
+.register__submit-button_disabled {
+	margin: 0 auto;
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  font: inherit;
+  color: #ffffff;
+  cursor: pointer;
+  max-width: 396px;
+  width: 100%;
+  height: 45px;
+	background-color: #4a4848;
+	margin-top: 148px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+@media screen and (max-width: 320px) {
+  .register__submit-button_disabled {
+    margin-top: 235px;
+  }
+}
+
 .register__question {
   font-weight: 400;
   font-size: 14px;
@@ -128,4 +151,12 @@
 .register__questio-link:hover {
   opacity: 70%;
   text-decoration: underline;
+}
+
+.register__input-err {
+	font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  align-items: center;
+  color: #EE3465;
 }

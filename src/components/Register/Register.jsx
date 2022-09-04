@@ -2,28 +2,20 @@ import React from 'react';
 import './Register.css';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
+import useFormWithValidation from '../ValidatorComponent/ValidatorComponent';
 
-const Register = ({registration}) => {
-	const [name, setName] = React.useState("");
-	const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+const Register = ({ registration }) => {
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
 
-	 function handleSubmit(evt) {
+  function handleSubmit(evt) {
     evt.preventDefault();
+    if (!values.password || !values.email || !values.name) {
+      return;
+    }
+    const { name, email, password } = values;
     registration(name, email, password);
   }
 
-	function handleChangeName(evt) {
-    setName(evt.target.value);
-  }
-
-  function handleChangeEmail(evt) {
-    setEmail(evt.target.value);
-  }
- 
-  function handleChangePassword(evt) {
-    setPassword(evt.target.value);
-  }
   return (
     <form onSubmit={handleSubmit} className="register">
       <header className="register__header">
@@ -38,8 +30,8 @@ const Register = ({registration}) => {
           Имя
         </label>
         <input
-					value={name}
-					name='name'
+          value={values.name || ''}
+          name="name"
           autoComplete="off"
           type="text"
           minLength="2"
@@ -47,15 +39,15 @@ const Register = ({registration}) => {
           required
           className="register__field"
           id="first-name"
-					onChange={handleChangeName}
+          onChange={handleChange}
         />
-        <span className="form__input-error email-input-error"></span>
+        <span className="register__input-err">{errors.name || ''}</span>
         <label htmlFor="first-email" className="register__label">
           E-mail
         </label>
         <input
-					value={email}
-					name='email'
+          value={values.email || ''}
+          name="email"
           autoComplete="off"
           type="email"
           minLength="3"
@@ -63,15 +55,15 @@ const Register = ({registration}) => {
           required
           className="register__field"
           id="first-email"
-					onChange={handleChangeEmail}
+          onChange={handleChange}
         />
-        <span className="form__input-error email-input-error"></span>
+        <span className="register__input-err">{errors.email || ''}</span>
         <label htmlFor="first-password" className="register__label">
           Пароль
         </label>
         <input
-					value={password}
-					name='password'
+          value={values.password || ''}
+          name="password"
           autoComplete="off"
           type="password"
           minLength="6"
@@ -79,13 +71,23 @@ const Register = ({registration}) => {
           required
           className="register__field"
           id="first-password"
-					onChange={handleChangePassword}
+          onChange={handleChange}
         />
-        <span className="form__input-error email-input-error"></span>
+        <span className="register__input-err">{errors.password || ''}</span>
       </fieldset>
-      <button onSubmit={handleSubmit} className="register__submit-button" type="submit">
-        Зарегистрироваться
-      </button>
+      {!isValid ? (
+        <button className="register__submit-button_disabled" disabled>
+          Зарегистрироваться
+        </button>
+      ) : (
+        <button
+          onSubmit={handleSubmit}
+          className="register__submit-button"
+          type="submit"
+        >
+          Зарегистрироваться
+        </button>
+      )}
       <p className="register__question">
         Уже зарегистрированы? &nbsp;
         <Link to="/signin" className="register__questio-link">

@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logoHeader from '../../images/logo.svg';
+import { CurrentUserContext } from '../../contexts/CurentUserContext';
 import './Header.css';
 
 function Header({ modifier = '', modifierMovi = '', isLoggedIn }) {
+	const currentUser = React.useContext(CurrentUserContext);
+
   return (
 		
     <header className="header">
