@@ -12,7 +12,7 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import auth from '../../utils/Auth';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import api from '../../utils/MoviesApi';
+// import api from '../../utils/MoviesApi';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,9 +24,10 @@ const App = () => {
     name: '',
     email: '',
   });
-  const [searchMovies, setSearchMovies] = useState([]);
-  const [moviesOnSearchPage, setMoviesOnSearchPage] = useState([]);
-  const [moviesAll, setMoviesAll] = useState([]);
+
+  // const [searchMovies, setSearchMovies] = useState([]);
+  // const [moviesOnSearchPage, setMoviesOnSearchPage] = useState([]);
+  // const [moviesAll, setMoviesAll] = useState([]);
 
   const checkRes = () => {
     if (data) {
@@ -144,42 +145,25 @@ const App = () => {
     setIsInfoToolTip(false);
   }
 
-  useEffect(() => {
-    if (isLoggedIn) {
-    //   const moviesAll = JSON.parse(localStorage.getItem('moviesAll'));
-    //   if (moviesAll) {
-    //     setMoviesAll(moviesAll);
-    //   } else {
-        api
-          .loadingMovies()
-          .then((cards) => {
-            localStorage.setItem('moviesAll', JSON.stringify(cards));
-            setMoviesAll(cards);
-          })
-          .catch((err) => {
-            localStorage.removeItem('moviesAll');
-            console.log(`Ошибка загрузки карточек ${err}`);
-          });
-      // }
-    }
-  }, [isLoggedIn]);
 
-  const shortMovies = (a) => a.filter((item) => item.duration <= 40); //фильтр короткометражек
-  return (
+
+  // const shortMovies = (a) => a.filter((item) => item.duration <= 40); //фильтр короткометражек
+  
+	return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
         <ProtectedRoute
           path="/movies"
           component={Movies}
           isLoggedIn={isLoggedIn}
-          shortMovies={shortMovies}
-          movies={searchMovies}
+          // shortMovies={shortMovies}
+          // moviesAll={moviesAll}
         />
-        <ProtectedRoute
+        {/* <ProtectedRoute
           path="/saved-movies"
           component={SavedMovies}
           isLoggedIn={isLoggedIn}
-        />
+        /> */}
         <ProtectedRoute
           path="/profile"
           component={Profile}
