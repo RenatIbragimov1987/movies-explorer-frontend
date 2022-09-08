@@ -6,24 +6,24 @@ import './SearchForm.css';
 import { useState } from 'react';
 
 const SearchForm = ({movieValue, getAllCard}) => {
-	
+
 
 
 
   return (
     <>
-      <div className="search">
+      <form className="search" onSubmit={getAllCard}>
         <div className="search__block">
           <div className="search__icon">
             <img src={searchIcon} alt="pic" className="search__icon-guard" />
           </div>
           <input type="text" className="search__field" placeholder="Фильм" onChange={movieValue}/>
-          <button className="search__btn" onClick={getAllCard}>
+          <button className="search__btn" type="submit" onSubmit={getAllCard}>
             <img src={arrowBtn} alt="picBtn" className="search__arrow" />
           </button>
         </div>
         <FilterCheckbox />
-      </div>
+      </form>
       <div className="search__border-bott"></div>
     </>
   );

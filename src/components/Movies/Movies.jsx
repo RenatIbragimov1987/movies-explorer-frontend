@@ -10,13 +10,14 @@ import Navigation from '../Navigation/Navigation';
 import api from '../../utils/MoviesApi';
 
 const Movies = ({ isLoggedIn }) => {
-  const [value, setValue] = useState('');
+  const [isValue, setIsValue] = useState('');
   const [moviesAll, setMoviesAll] = useState([]);
-	const [textSearch, setTextSearch] = useState('');
-
+  const [textSearch, setTextSearch] = useState('');
+  const [width, setWidth] = useState(window.innerWidth);
   const [buttonForCard, setButtonForCard] = useState(false);
-
-	//заносим карточки в хранилище локалсторидж в виде строки
+	const raw = localStorage.getItem('moviesAll');
+	const movie = JSON.parse(raw);
+  //заносим карточки в хранилище локалсторидж в виде строки
   useEffect(() => {
     if (isLoggedIn) {
       api
@@ -31,36 +32,59 @@ const Movies = ({ isLoggedIn }) => {
     }
   }, [isLoggedIn]);
 
-	//достаем карточки из хранилища пареводим строку в обьекты
-  const getAllCard = () => {
-    if (isLoggedIn) {
-				const raw = localStorage.getItem('moviesAll')
-				const movie = JSON.parse(raw)
-        setMoviesAll(movie);
-        setButtonForCard(true);
-    }
+  // const updateWidth = () => {
+  // 		setTimeout(() => {
+  // 				setWidth(window.innerWidth);
+  // 		}, 200)
+  // };
+
+  //достаем карточки из хранилища пареводим строку в обьекты
+  const getAllCard = (e) => {
+    e.preventDefault();
+		if (isValue) {
+			setButtonForCard(true);
+    	setMoviesAll(movie);
+		} else {
+			console.log(isValue);
+		}
   };
 
-  const movieValue = (e) => {
-    e.preventDefault();
-    setValue(e.target.value);
+  function movieValue(evt) {
+		setButtonForCard(false);
+    setIsValue(evt.target.value);
   };
 
   const filteredMovies = moviesAll.filter((movie) => {
-		
-    return movie.nameRU.toLowerCase().includes(value.toLowerCase());
+    return movie.nameRU.toLowerCase().includes(isValue.toLowerCase());
   });
 
-
+  // 	useEffect(() => {
+  // 		window.addEventListener('resize', updateWidth);
+  // 		if(width >= 1280) {
+  // 				setMoviesAll(12);
+  // 				// setExtraCount(3);
+  // 		}
+  // 		// if(width >= 768 && width < 1280) {
+  // 		// 	setMoviesAll(8);
+  // 		// 		// setExtraCount(2);
+  // 		// }
+  // 		// if(width >= 320 && width < 768) {
+  // 		// 	setMoviesAll(5);
+  // 		// 		// setExtraCount(2);
+  // 		// }
+  // 		// // if (path === "/saved-movies") {
+  // 		// // 	setMoviesAll(100)
+  // 		// // }
+  // 		// return () => window.removeEventListener('resize', updateWidth)
+  // }, [width]);
 
   return (
     <>
       <Header modifierMovi="header__nav_none" isLoggedIn={isLoggedIn} />
       <Navigation />
-      <SearchForm movieValue={movieValue} getAllCard={getAllCard} />
+      <SearchForm movieValue={movieValue}  getAllCard={getAllCard} />
       <Preloader />
-			{buttonForCard ? 
-      <MoviesCardList filteredMovies={filteredMovies} /> : ''}
+      {buttonForCard ? <MoviesCardList filteredMovies={filteredMovies} /> : ''}
       {buttonForCard ? <ButtonYet /> : ''}
       <Footer />
     </>
