@@ -6,6 +6,7 @@
   list-style-type: none;
   background: #fdfdfd;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+	overflow: hidden;
 }
 @media screen and (max-width: 768px) {
   .moviesCard {
@@ -23,6 +24,7 @@
     height: 236px;
   }
 }
+
 .moviesCard__block {
   display: flex;
   justify-content: space-between;
@@ -31,12 +33,19 @@
 }
 .moviesCard__title {
   margin: 0;
-  padding-bottom: 9px;
-  padding-top: 14px;
+  margin-bottom: 9px;
+  margin-top: 14px;
   font-weight: 500;
   font-size: 15px;
   line-height: 18.15px;
   color: #000000;
+	max-width: 280px;
+	width: 100%;
+	max-height: 19px;
+	height: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .moviesCard__time {

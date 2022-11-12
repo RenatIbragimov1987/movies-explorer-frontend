@@ -1,9 +1,9 @@
 import React from 'react';
 import './ButtonYet.css';
 
-const ButtonYet = () => {
+const ButtonYet = ({buttonMoreHandle}) => {
   return (
-    <button type="button" className="moviesCardList__button">
+    <button type="button" className="moviesCardList__button" onClick={buttonMoreHandle}>
       Ещё
     </button>
   );

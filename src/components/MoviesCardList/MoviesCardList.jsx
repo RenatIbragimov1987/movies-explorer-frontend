@@ -7,12 +7,12 @@ import { useLocation } from 'react-router-dom';
 import { useState, useContext, useEffect } from 'react';
 import api from '../../utils/MoviesApi';
 
-const MoviesCardList = ({filteredMovies}) => {
+const MoviesCardList = ({resMovies}) => {
 
 	
   return (
     <ul className="moviesCardList">
-			{filteredMovies.map((card) => (
+			{resMovies.map((card) => (
 					<MoviesCard ButtonSave={ButtonSave}
 					 key={card.id} card={card}
 					/>

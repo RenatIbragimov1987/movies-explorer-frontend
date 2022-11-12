@@ -12,7 +12,7 @@ import Footer from '../Footer/Footer';
 const Main = ({ isLoggedIn }) => {
 	
   return (
-    <main>
+    <main >
       <Header modifier="header__account_none" modifierNav="novigation_none" isLoggedIn={isLoggedIn} />
       <Promo />
       <NavTab />

@@ -12,10 +12,13 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import auth from '../../utils/Auth';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-// import api from '../../utils/MoviesApi';
+import api from '../../utils/MoviesApi';
+import Preloader from '../Preloader/Preloader';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isPreloader, setIsPreloader] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isSuccess, setIsSuccess] = useState(false);
   const [isInfoToolTip, setIsInfoToolTip] = useState(false);
@@ -24,10 +27,7 @@ const App = () => {
     name: '',
     email: '',
   });
-
-  // const [searchMovies, setSearchMovies] = useState([]);
-  // const [moviesOnSearchPage, setMoviesOnSearchPage] = useState([]);
-  // const [moviesAll, setMoviesAll] = useState([]);
+  const history = useHistory();
 
   const checkRes = () => {
     if (data) {
@@ -38,16 +38,49 @@ const App = () => {
     }
   };
 
-  const history = useHistory();
+  // const location = useLocation();
+  // const navigate = useNavigate(); // Предоставляет доступ к useNavigate, был UseHistory в v5 Router
+  // const path = location.pathname;
+
+  const handleLoggedIn = () => {
+    setIsLoggedIn(true);
+    if ({ pathname: '/signin' } || { pathname: '/signup' }) {
+      history.push({ replace: true });
+    } else {
+      history.push({ replace: false });
+    }
+  };
+
+  // Проверка токена (jwt) в cookies
+  useEffect(() => {
+    setIsPreloader(true);
+    auth
+      .getUserInfo()
+      .then((data) => {
+        if (data) {
+          handleLoggedIn();
+          setIsPreloader(false);
+        }
+      })
+      .catch((err) => {
+        setIsPreloader(false);
+      })
+      .catch(() => {
+        history.replace('/', { replace: true });
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   //регистрация
   function registration(name, email, password) {
     setIsLoggedIn(true);
+    setIsPreloader(true);
     auth
       .userRegistration(name, email, password)
       .then((data) => {
         checkRes(data);
         history.replace({ pathname: '/movies' });
+        setIsPreloader(false);
       })
       .catch((err) => {
         setIsSuccess(false);
@@ -64,7 +97,12 @@ const App = () => {
       })
       .finally(() => {});
   }
+  // useEffect(() => {
+  // 	if (isLoggedIn) {
+  // 		setIsPreloader(true)
+  // 	}
 
+  // }, [isLoggedIn]);
   //запрашиваем данные юзера
   useEffect(() => {
     if (isLoggedIn) {
@@ -72,8 +110,10 @@ const App = () => {
         .getUserInfo()
         .then((data) => {
           if (data) {
+            setIsPreloader(false);
             setIsLoggedIn(true);
             setCurrentUser(data);
+            setIsLoading(true);
           }
         })
         .catch((err) => {
@@ -83,14 +123,31 @@ const App = () => {
     }
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      api
+        .loadingMovies()
+        .then((cards) => {
+          localStorage.setItem('moviesAllLoc', JSON.stringify(cards));
+        })
+        .catch((err) => {
+          localStorage.removeItem('moviesAllLoc');
+          console.log(`Ошибка загрузки карточек в хранилище ${err}`);
+        });
+    }
+  }, [isLoggedIn]);
+
   //авторизация
   function authorization(email, password) {
+    setIsPreloader(true);
     auth
       .userAuthorization(email, password)
       .then((data) => {
         setIsLoggedIn(data);
+        setIsPreloader(false);
         history.push('/movies');
       })
+
       .catch((err) => {
         setIsSuccess(false);
         setIsInfoToolTip({
@@ -109,11 +166,13 @@ const App = () => {
 
   //изменение данных профиля
   function handleUpdateUser(data) {
+    setIsPreloader(true);
     auth
       .profileEditing(data)
       .then((item) => {
         setIsLoggedIn(true);
         checkRes(data);
+        setIsPreloader(false);
       })
       .then(() => {
         history.replace({ pathname: '/signin' });
@@ -129,14 +188,16 @@ const App = () => {
       .finally(() => {});
   }
 
-  const handleExit = (e) => {
-    e.preventDefault();
-    auth.userSignout();
-    setIsLoggedIn(false);
-    setData({
-      name: null,
-      email: null,
+  const handleExit = (event) => {
+    event.preventDefault();
+    setIsPreloader(true);
+    auth.userSignout().then((data) => {
+      if (data) {
+        setIsLoggedIn(false);
+        setIsPreloader(false);
+      }
     });
+    setData({ name: null, email: null });
     history.push('/');
   };
 
@@ -145,49 +206,61 @@ const App = () => {
     setIsInfoToolTip(false);
   }
 
-
-
   // const shortMovies = (a) => a.filter((item) => item.duration <= 40); //фильтр короткометражек
-  
-	return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <Switch>
-        <ProtectedRoute
-          path="/movies"
-          component={Movies}
-          isLoggedIn={isLoggedIn}
-          // shortMovies={shortMovies}
-          // moviesAll={moviesAll}
-        />
-        {/* <ProtectedRoute
+
+  return (
+    <div className="page">
+      {isPreloader ? <Preloader /> : ''}
+
+      <CurrentUserContext.Provider value={currentUser}>
+        <Switch setIsPreloader={false}>
+          <ProtectedRoute
+            path="/movies"
+            component={Movies}
+            isLoggedIn={isLoggedIn}
+            isPreloader={setIsPreloader}
+            // isLoading={isLoading}
+            // shortMovies={shortMovies}
+            // moviesAll={moviesAll}
+          />
+          {/* <ProtectedRoute
           path="/saved-movies"
           component={SavedMovies}
           isLoggedIn={isLoggedIn}
         /> */}
-        <ProtectedRoute
-          path="/profile"
-          component={Profile}
-          isLoggedIn={isLoggedIn}
-          onUpdateUser={handleUpdateUser}
-          handleExit={handleExit}
+          <ProtectedRoute
+            path="/profile"
+            component={Profile}
+            isLoggedIn={isLoggedIn}
+            onUpdateUser={handleUpdateUser}
+            handleExit={handleExit}
+          />
+
+          <Route
+            exact
+            onChange={isPreloader}
+            path="/"
+            render={() => <Main isLoggedIn={isLoggedIn} />}
+          />
+
+          <Route
+            path="/signup"
+            render={() => <Register registration={registration} />}
+          />
+          <Route
+            path="/signin"
+            render={() => <Login authorization={authorization} />}
+          />
+          <Route path="*" render={() => <PageNotFound />} />
+        </Switch>
+
+        <InfoTooltip
+          onClose={closePopup}
+          isSuccess={isSuccess}
+          isInfoToolTip={isInfoToolTip}
         />
-        <Route exact path="/" render={() => <Main isLoggedIn={isLoggedIn} />} />
-        <Route
-          path="/signup"
-          render={() => <Register registration={registration} />}
-        />
-        <Route
-          path="/signin"
-          render={() => <Login authorization={authorization} />}
-        />
-        <Route path="*" render={() => <PageNotFound />} />
-      </Switch>
-      <InfoTooltip
-        onClose={closePopup}
-        isSuccess={isSuccess}
-        isInfoToolTip={isInfoToolTip}
-      />
-    </CurrentUserContext.Provider>
+      </CurrentUserContext.Provider>
+    </div>
   );
 };
 
