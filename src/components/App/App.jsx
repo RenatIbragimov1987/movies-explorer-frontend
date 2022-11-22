@@ -123,19 +123,7 @@ const App = () => {
     }
   }, [isLoggedIn]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      api
-        .loadingMovies()
-        .then((cards) => {
-          localStorage.setItem('moviesAllLoc', JSON.stringify(cards));
-        })
-        .catch((err) => {
-          localStorage.removeItem('moviesAllLoc');
-          console.log(`Ошибка загрузки карточек в хранилище ${err}`);
-        });
-    }
-  }, [isLoggedIn]);
+
 
   //авторизация
   function authorization(email, password) {
@@ -195,6 +183,11 @@ const App = () => {
       if (data) {
         setIsLoggedIn(false);
         setIsPreloader(false);
+				localStorage.removeItem('moviesAllLoc');
+				localStorage.removeItem('foundMoviesLoc');
+				localStorage.removeItem('textSearch');
+				localStorage.removeItem('savedMovies');
+				localStorage.removeItem('switchTumb');
       }
     });
     setData({ name: null, email: null });
@@ -206,28 +199,29 @@ const App = () => {
     setIsInfoToolTip(false);
   }
 
-  // const shortMovies = (a) => a.filter((item) => item.duration <= 40); //фильтр короткометражек
 
   return (
     <div className="page">
       {isPreloader ? <Preloader /> : ''}
 
       <CurrentUserContext.Provider value={currentUser}>
+				
         <Switch setIsPreloader={false}>
           <ProtectedRoute
             path="/movies"
             component={Movies}
             isLoggedIn={isLoggedIn}
             isPreloader={setIsPreloader}
+						currentUser={currentUser}
             // isLoading={isLoading}
             // shortMovies={shortMovies}
             // moviesAll={moviesAll}
           />
-          {/* <ProtectedRoute
+          <ProtectedRoute
           path="/saved-movies"
           component={SavedMovies}
           isLoggedIn={isLoggedIn}
-        /> */}
+        />
           <ProtectedRoute
             path="/profile"
             component={Profile}

@@ -10,6 +10,7 @@ class MoviesApi {
       return res.json();
     }
     return Promise.reject(`Error: ${res.status}`);
+		
   };
 
   // загрузка фильмов с сервера
@@ -20,8 +21,11 @@ class MoviesApi {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
+			
     }).then((res) => this._checkStatus(res));
+		
   }
+	
 }
 
 const api = new MoviesApi({
@@ -30,40 +34,3 @@ const api = new MoviesApi({
 
 export default api;
 
-
-
-// удаление карточки
-// deleteCard = (id) => {
-//   return fetch(`${this._address}/cards/${id}/delete-card`, {
-//     method: 'DELETE',
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     credentials: 'include',
-//   }).then((res) => this._checkStatus(res));
-// };
-
-// постановка лайка
-// addLike = (id) => {
-//   return fetch(`${this._address}/cards/${id}/likes`, {
-//     method: 'PUT',
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     credentials: 'include',
-//   }).then((res) => this._checkStatus(res));
-// };
-
-// удаление лайка
-// removeLike = (id) => {
-//   return fetch(`${this._address}/cards/${id}/likes`, {
-//     method: 'DELETE',
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     credentials: 'include',
-//   }).then((res) => this._checkStatus(res));
-// };

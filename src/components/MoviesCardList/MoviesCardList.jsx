@@ -1,23 +1,23 @@
 import React from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import ButtonSave from '../ButtonSave/ButtonSave';
+
+import ButtonSaved from '../ButtonSaved/ButtonSaved';
+import DeleteSaveBtn from '../DeleteSaveBtn/DeleteSaveBtn';
+
 import { useLocation } from 'react-router-dom';
 // import { CurrentUserContext } from '../../contexts/CurentUserContext';
 import { useState, useContext, useEffect } from 'react';
 import api from '../../utils/MoviesApi';
 
-const MoviesCardList = ({resMovies}) => {
-
-	
+const MoviesCardList = ({resMovies, AddToFavorites, savedMovies}) => {
   return (
     <ul className="moviesCardList">
-			{resMovies.map((card) => (
-					<MoviesCard ButtonSave={ButtonSave}
-					 key={card.id} card={card}
-					/>
-			))
-			}
+			{resMovies.map((card, id) => (
+				<MoviesCard ButtonSaved={ButtonSaved} AddToFavorites={AddToFavorites} savedMovies={savedMovies}
+				 key={id} card={card}
+				/>
+		))}
     </ul>
   );
 };

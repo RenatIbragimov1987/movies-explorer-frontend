@@ -1,49 +1,65 @@
-// import React, { useState, useEffect } from 'react';
-// import './SavedMovies.css';
-// import SearchForm from '../SearchForm/SearchForm';
-// import MoviesCard from '../MoviesCard/MoviesCard';
-// import Header from '../Header/Header';
-// import Footer from '../Footer/Footer';
-// import Navigation from '../Navigation/Navigation';
-// import MoviesCardList from '../MoviesCardList/MoviesCardList';
-// import ButtonYet from '../ButtonYet/ButtonYet';
+import React, { useState, useEffect } from 'react';
+import './SavedMovies.css';
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCard from '../MoviesCard/MoviesCard';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Navigation from '../Navigation/Navigation';
 
-// const SavedMovies = ({isLoggedIn}) => {
-// 	const [buttonForCard, setButtonForCard] = useState(false);
-// 	const [searchMovies, setSearchMovies] = useState([]);
-// 	const [isValue, setIsValue] = useState('');
-//   const [moviesAll, setMoviesAll] = useState([]);
-// 	const raw = localStorage.getItem('moviesAllLoc');
-// 	const movie = JSON.parse(raw);
-	
-//   const searchCard = (e) => {
-// 		e.preventDefault();
-// 		setButtonForCard(true);
-// 		setSearchMovies(searchMovies);
-//   };
+import ButtonYet from '../ButtonYet/ButtonYet';
 
-//   function movieValue(evt) {
-// 		setButtonForCard(false);
-//     setIsValue(evt.target.value);
-// 		setMoviesAll(movie)
-//   };
+const SavedMovies = ({isLoggedIn}) => {
+	// const [buttonForCard, setButtonForCard] = useState(false);
+	// const [searchMovies, setSearchMovies] = useState([]);
+	// const [isValue, setIsValue] = useState('');
+  const [savedMoviesAll, setSavedMoviesAll] = useState(() => {
+		const raw = localStorage.getItem('savedMoviesLoc');
+		const movie = JSON.parse(raw);
+		return movie || [];
+	});
 
-//   return (
-//     <>
-//       <Header modifierMovi="header__nav_none" isLoggedIn={isLoggedIn} />
-//       <Navigation />
-//       <SearchForm movieValue={movieValue}  searchCard={searchCard} />
-//       <div className="savedMovies">
-// 			{buttonForCard ? <MoviesCardList/> : ''}
-//       {buttonForCard ? <ButtonYet /> : ''}
-//         {/* {[...Array(3)].map((card, index) => (
-//           <MoviesCard key={index} />
-//         ))} */}
-//       </div>
+console.log(savedMoviesAll);
 
-//       <Footer />
-//     </>
-//   );
-// };
+  // слушатель ввода в строку поиска фильмов
+  // const searchValue = (event) => {
+  //   event.preventDefault();
+  //   setTextSearch(event.target.value);
+  // };
 
-// export default SavedMovies;
+	// const filterMoviesOfSaved = (event) => {
+	// 	event.preventDefault();
+	// 	setSavedMoviesAll(
+	// 		savedMoviesAll.filter((mov) => {
+	// 			return mov.nameRU.toLowerCase().includes(textSearch.toLowerCase());
+	// 		})
+	// 	);
+	// }
+
+  // const searchCard = (e) => {
+	// 	e.preventDefault();
+	// 	setButtonForCard(true);
+	// 	setSearchMovies(searchMovies);
+  // };
+
+  // function movieValue(evt) {
+	// 	setButtonForCard(false);
+  //   setIsValue(evt.target.value);
+	// 	setMoviesAll(movie)
+  // };
+
+  return (
+    <>
+      <Header modifierMovi="header__nav_none" isLoggedIn={isLoggedIn} />
+      <Navigation />
+      <SearchForm />
+			<ul className="moviesCardList">
+			{savedMoviesAll.map((card, id) => (
+				<MoviesCard key={id} card={card}/>
+		))}
+			</ul>
+      <Footer />
+    </>
+  );
+};
+
+export default SavedMovies;
