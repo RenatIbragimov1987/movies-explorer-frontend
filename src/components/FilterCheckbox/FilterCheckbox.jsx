@@ -1,10 +1,7 @@
 import React from 'react';
-import { useEffect } from 'react';
 import './FilterCheckbox.css';
 
-
-const FilterCheckbox = ({switchTumb, filterTumb, searchButton}) => {
-
+const FilterCheckbox = ({switchTumb, filterTumb}) => {
   return (
     <div className="filter">
       <label className="filter__checkbox">

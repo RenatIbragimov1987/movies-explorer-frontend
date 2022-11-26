@@ -1,60 +1,112 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Navigation from '../Navigation/Navigation';
+import ourApi from '../../utils/MainApi';
 
-import ButtonYet from '../ButtonYet/ButtonYet';
+const SavedMovies = ({
+	isLoggedIn,
+  valuesErr,
+	searchButton,
+	filterTumb,
+	switchTumb,
+	resMovies,
+	shortFilms,
+	
+}) => {
+	const [savedMoviesDisplay, setSavedMoviesDisplay] = React.useState([]);
+	const [filterSavedMoviesDisplay, setFilterSavedMoviesDisplay] = React.useState([]);
+	const [textSearchSaved, setTextSearchSaved] = React.useState('');
+	const [valuesErrSaved, setValuesErrSaved] = React.useState(''); // сообщение ошибки при пустом поле поиска
+  const [valuesNotMoviesSaved, setValuesNotMoviesSaved] = React.useState('');
 
-const SavedMovies = ({isLoggedIn}) => {
-	// const [buttonForCard, setButtonForCard] = useState(false);
-	// const [searchMovies, setSearchMovies] = useState([]);
-	// const [isValue, setIsValue] = useState('');
-  const [savedMoviesAll, setSavedMoviesAll] = useState(() => {
-		const raw = localStorage.getItem('savedMoviesLoc');
-		const movie = JSON.parse(raw);
-		return movie || [];
-	});
+const searchValueSaved = (e) => {
+	setTextSearchSaved(e.target.value);
+};
 
-console.log(savedMoviesAll);
+	// кнопка поиска сохраненных фильмов
+const searchButtonSaved = (event) => {
+	event.preventDefault();
+	setFilterSavedMoviesDisplay(
+			savedMoviesDisplay.filter((mov) => {
+				return mov.nameRU.toLowerCase().includes(textSearchSaved.toLowerCase());
+			})
+		);
+		if(textSearchSaved.length === 0) {
+			setValuesErrSaved('Нужно ввести ключевое слово')
+		} else {
+			setValuesErrSaved('')
+		}
+}
 
-  // слушатель ввода в строку поиска фильмов
-  // const searchValue = (event) => {
-  //   event.preventDefault();
-  //   setTextSearch(event.target.value);
-  // };
+const DeleteSavedMovies = (movie) => {
+	const movieId = savedMoviesDisplay.find((item) => item.id === movie.id);
+	ourApi
+		.deleteSavedForElectedMovies(movieId._id)
+		.then((data) => {
+				setSavedMoviesDisplay(savedMoviesDisplay.filter((c) => c.movieId !== data.movieId))
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+};
 
-	// const filterMoviesOfSaved = (event) => {
-	// 	event.preventDefault();
-	// 	setSavedMoviesAll(
-	// 		savedMoviesAll.filter((mov) => {
-	// 			return mov.nameRU.toLowerCase().includes(textSearch.toLowerCase());
-	// 		})
-	// 	);
-	// }
+//запрашиваем сохраненные карточки с сервера
+React.useEffect(() => {
+	if (isLoggedIn) {
+		ourApi.getSavedForElectedMovies()
+		.then((data) => {
+			setSavedMoviesDisplay(data)
+		})
+		.catch((err) => {
+			console.log(`Во время запроса сохраненных фильмов произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз. ${err}`);
+		});
+	}
+}, [isLoggedIn]);
 
-  // const searchCard = (e) => {
-	// 	e.preventDefault();
-	// 	setButtonForCard(true);
-	// 	setSearchMovies(searchMovies);
-  // };
+	// фильтр страницы с сохраненными фильмами
+	React.useEffect(() => {
+		if (switchTumb) {
+      setFilterSavedMoviesDisplay(
+				shortFilms(savedMoviesDisplay)
+			)
+		} else {
+			return setFilterSavedMoviesDisplay(savedMoviesDisplay)
+		}
+  }, [switchTumb, savedMoviesDisplay, shortFilms]);
 
-  // function movieValue(evt) {
-	// 	setButtonForCard(false);
-  //   setIsValue(evt.target.value);
-	// 	setMoviesAll(movie)
-  // };
 
+	React.useEffect(() => {
+		if (filterSavedMoviesDisplay.length === 0) {
+      setValuesNotMoviesSaved('Ничего не найдено')
+		} else {
+			setValuesNotMoviesSaved('')
+		}
+  }, [filterSavedMoviesDisplay, setValuesNotMoviesSaved]);
+	
   return (
     <>
       <Header modifierMovi="header__nav_none" isLoggedIn={isLoggedIn} />
       <Navigation />
-      <SearchForm />
+      <SearchForm 
+			isLoggedIn={isLoggedIn}
+			searchButton={searchButton}
+			filterTumb={filterTumb}
+			switchTumb={switchTumb}
+			textSearchSaved={textSearchSaved}
+			searchValueSaved={searchValueSaved}
+			searchButtonSaved={searchButtonSaved}
+			resMovies={resMovies}
+			valuesErrSaved={valuesErrSaved}
+			valuesNotMoviesSaved={valuesNotMoviesSaved}
+			filterSavedMoviesDisplay={filterSavedMoviesDisplay}
+			/>
 			<ul className="moviesCardList">
-			{savedMoviesAll.map((card, id) => (
-				<MoviesCard key={id} card={card}/>
+			{filterSavedMoviesDisplay.map((card, id) => (
+				<MoviesCard key={id} card={card} DeleteSavedMovies={DeleteSavedMovies}/>
 		))}
 			</ul>
       <Footer />

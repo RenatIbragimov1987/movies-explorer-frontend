@@ -6,6 +6,7 @@ class MainApi {
 
   //возвращаем результат работы метода
   _checkStatus = (res) => {
+		console.log(res);
     if (res.ok) {
       return res.json();
     }
@@ -36,22 +37,22 @@ class MainApi {
 	}).then((res) => this._checkStatus(res));
 };
 
-deleteSavedForElectedMovies = (_id) => {
-	return fetch(`${this._address}/${_id}/movies`, {
+deleteSavedForElectedMovies = (id) => {
+	return fetch(`${this._address}/movies/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
 			Accept: 'application/json', 
 		},
 		credentials: 'include',
-	// 	body: JSON.stringify({
+		// body: JSON.stringify({
 	// 		country: data.country ? data.country : "Нет данных о стране",
 	// 		description: data.description ? data.description : "Нет данных об описании",
 	// 		director: data.director ? data.director : "Нет данных о режиссёре",
 	// 		duration: data.duration ? data.duration : "Нет данных о длительности",
 	// 		image: `https://api.nomoreparties.co/beatfilm-movies${data.image.url}` ? `https://api.nomoreparties.co/beatfilm-movies${data.image.url}` : "Нет данных об изображении",
 
-	// 		movieId: data.id,
+			// movieId: _id,
 	// 		nameEN: data.nameEN ? data.nameEN : "Нет названия на английском языке",
 	// 		nameRU: data.nameRU ? data.nameRU : "Нет названия на русском языке",
 	// 		thumbnail: `https://api.nomoreparties.co/beatfilm-movies${data.image.formats.thumbnail.url}` ? `https://api.nomoreparties.co/beatfilm-movies${data.image.formats.thumbnail.url}` : "Нет данных",
