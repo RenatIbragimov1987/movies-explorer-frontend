@@ -50,7 +50,7 @@ const App = () => {
     const initialTumbler = JSON.parse(saved);
     return initialTumbler || false;
   });
-	const [favoritesLogoState, setFavoritesLogoState] = useState(false);
+	// const [favoritesLogoState, setFavoritesLogoState] = useState(false);
   // сохранение фильмов
   const [savedMovies, setSavedMovies] = useState([]);
   const [displayCard, setDisplayCard] = useState(true); // состояние отображения карточек
