@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCard from '../MoviesCard/MoviesCard';
@@ -15,14 +15,15 @@ const SavedMovies = ({
 	switchTumb,
 	resMovies,
 	shortFilms,
-	
+	savedMoviesDisplay,
 }) => {
-	const [savedMoviesDisplay, setSavedMoviesDisplay] = React.useState([]);
-	const [filterSavedMoviesDisplay, setFilterSavedMoviesDisplay] = React.useState([]);
-	const [textSearchSaved, setTextSearchSaved] = React.useState('');
-	const [valuesErrSaved, setValuesErrSaved] = React.useState(''); // сообщение ошибки при пустом поле поиска
-  const [valuesNotMoviesSaved, setValuesNotMoviesSaved] = React.useState('');
-
+	
+	const [filterSavedMoviesDisplay, setFilterSavedMoviesDisplay] = useState([]);
+	const [textSearchSaved, setTextSearchSaved] = useState('');
+	const [valuesErrSaved, setValuesErrSaved] = useState(''); // сообщение ошибки при пустом поле поиска
+  const [valuesNotMoviesSaved, setValuesNotMoviesSaved] = useState('');
+	// const pagge = window.location.pathname === '/saved-movies';
+  // console.log(pagge, 'pagge');
 const searchValueSaved = (e) => {
 	setTextSearchSaved(e.target.value);
 };
@@ -40,53 +41,64 @@ const searchButtonSaved = (event) => {
 		} else {
 			setValuesErrSaved('')
 		}
-}
-
-const DeleteSavedMovies = (movie) => {
-	const movieId = savedMoviesDisplay.find((item) => item.id === movie.id);
-	ourApi
-		.deleteSavedForElectedMovies(movieId._id)
-		.then((data) => {
-				setSavedMoviesDisplay(savedMoviesDisplay.filter((c) => c.movieId !== data.movieId))
-		})
-		.catch((err) => {
-			console.error(err);
-		});
-};
-
-//запрашиваем сохраненные карточки с сервера
-React.useEffect(() => {
-	if (isLoggedIn) {
-		ourApi.getSavedForElectedMovies()
-		.then((data) => {
-			setSavedMoviesDisplay(data)
-		})
-		.catch((err) => {
-			console.log(`Во время запроса сохраненных фильмов произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз. ${err}`);
-		});
-	}
-}, [isLoggedIn]);
-
-	// фильтр страницы с сохраненными фильмами
-	React.useEffect(() => {
-		if (switchTumb) {
-      setFilterSavedMoviesDisplay(
-				shortFilms(savedMoviesDisplay)
-			)
-		} else {
-			return setFilterSavedMoviesDisplay(savedMoviesDisplay)
-		}
-  }, [switchTumb, savedMoviesDisplay, shortFilms]);
-
-
-	React.useEffect(() => {
 		if (filterSavedMoviesDisplay.length === 0) {
       setValuesNotMoviesSaved('Ничего не найдено')
 		} else {
 			setValuesNotMoviesSaved('')
 		}
-  }, [filterSavedMoviesDisplay, setValuesNotMoviesSaved]);
+}
+
+
+
+function DeleteSavedMovies(card){
+	console.log(card._id);
+	// const movi = filterSavedMoviesDisplay.find((item) => item.movieId);
+	ourApi
+		.deleteSavedForElectedMovies(card._id)
+		.then(() => {
+			setFilterSavedMoviesDisplay(filterSavedMoviesDisplay.filter((c) => c._id !== card._id))
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+};
+console.log(filterSavedMoviesDisplay);
+// useEffect(() => {
+// 	if (isLoggedIn && DeleteSavedMovies) {
+// 		setFilterSavedMoviesDisplay(filterSavedMoviesDisplay)
+// 	}
+
 	
+// }, [isLoggedIn, filterSavedMoviesDisplay, DeleteSavedMovies]);
+
+
+	// фильтр страницы с сохраненными фильмами
+	useEffect(() => {
+		if (switchTumb) {
+      setFilterSavedMoviesDisplay(
+				shortFilms(filterSavedMoviesDisplay)
+			)
+		}	else {
+      ourApi
+			.getSavedForElectedMovies()
+			.then((card) => {
+				setFilterSavedMoviesDisplay(card);
+			})
+		}
+  }, [shortFilms, switchTumb]);
+
+	useEffect(() => {
+		if (isLoggedIn){
+			ourApi
+			.getSavedForElectedMovies()
+			.then((card) => {
+				setFilterSavedMoviesDisplay(card);
+			})
+			.catch((err) => {
+				console.log(`ошибка отображения избранных фильмов ${err}`);
+			});
+		}
+	}, [isLoggedIn])
   return (
     <>
       <Header modifierMovi="header__nav_none" isLoggedIn={isLoggedIn} />
@@ -106,7 +118,7 @@ React.useEffect(() => {
 			/>
 			<ul className="moviesCardList">
 			{filterSavedMoviesDisplay.map((card, id) => (
-				<MoviesCard key={id} card={card} DeleteSavedMovies={DeleteSavedMovies}/>
+				<MoviesCard card={card} key={id} DeleteSavedMovies={DeleteSavedMovies}/>
 		))}
 			</ul>
       <Footer />

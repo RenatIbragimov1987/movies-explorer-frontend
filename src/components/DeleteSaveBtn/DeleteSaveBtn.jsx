@@ -2,9 +2,14 @@ import React from 'react';
 import './DeleteSaveBtn.css';
 import deleteIcon from '../../images/iconDelete.svg';
 
-const DeleteSaveBtn = ({DeleteSavedMovies}) => {
+const DeleteSaveBtn = ({card, DeleteSavedMovies}) => {
+	
+	function handleCardDelete() {
+		DeleteSavedMovies(card)
+	}
+
   return (
-    <button type="submit" className="moviesCardDelete" onClick={DeleteSavedMovies}>
+    <button className="moviesCardDelete" onClick={handleCardDelete}>
       <img src={deleteIcon} alt="pic" className="moviesCardDelete__svg" />
     </button>
   );

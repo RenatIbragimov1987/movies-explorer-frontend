@@ -26,6 +26,7 @@ const Movies = ({
 	textSearchSaved,
 	valuesNotMovies,
 	filteredMovies,
+	switchSavedIcon,
 }) => {
 
   return (
@@ -50,6 +51,7 @@ const Movies = ({
           savedMovies={savedMovies}
           resMovies={resMovies}
           AddToFavorites={AddToFavorites}
+					switchSavedIcon={switchSavedIcon}
         />
       ) : (
         ''

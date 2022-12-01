@@ -6,7 +6,6 @@ class MainApi {
 
   //возвращаем результат работы метода
   _checkStatus = (res) => {
-		console.log(res);
     if (res.ok) {
       return res.json();
     }
@@ -38,7 +37,7 @@ class MainApi {
 };
 
 deleteSavedForElectedMovies = (id) => {
-	return fetch(`${this._address}/movies/${id}`, {
+	return fetch(`${this._address}/movies/${id}/delete-card`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',

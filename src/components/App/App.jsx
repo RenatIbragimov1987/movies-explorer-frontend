@@ -50,7 +50,10 @@ const App = () => {
     const initialTumbler = JSON.parse(saved);
     return initialTumbler || false;
   });
-	// const [favoritesLogoState, setFavoritesLogoState] = useState(false);
+  // const [switchSavedIcon, setSwitchSavedIcon] = useState(false)
+
+  const [savedMoviesDisplay, setSavedMoviesDisplay] = useState([]);
+  const [favoritesLogoState, setFavoritesLogoState] = useState(false);
   // сохранение фильмов
   const [savedMovies, setSavedMovies] = useState([]);
   const [displayCard, setDisplayCard] = useState(true); // состояние отображения карточек
@@ -61,20 +64,21 @@ const App = () => {
   const [extraMovies, setExtraMovies] = useState(0);
   const [width, setWidth] = useState(window.innerWidth);
   const resMovies = filteredMovies.slice(0, searchMovies);
-	// функция фильтрации короткометражек
+  // функция фильтрации короткометражек
   const shortFilms = (card) => card.filter((item) => item.duration <= 40);
-
   const history = useHistory();
-	//функция отслеживания разрешения экрана
+ 
+
+  //функция отслеживания разрешения экрана
   const updateWidth = () => {
     const timer = setTimeout(() => {
       setWidth(window.innerWidth);
     }, 300);
     return () => clearTimeout(timer);
   };
- //функция отображения и добавления карточек на разных разрешениях
-	const displayDifferentWidth = (width) => {
-		if (width >= 1280) {
+  //функция отображения и добавления карточек на разных разрешениях
+  const displayDifferentWidth = (width) => {
+    if (width >= 1280) {
       setSearchMovies(12);
       setExtraMovies(3);
     }
@@ -86,7 +90,7 @@ const App = () => {
       setSearchMovies(12);
       setExtraMovies(3);
     }
-	}
+  };
 
   // слушатель ввода в строку поиска фильмов
   const searchValue = (e) => {
@@ -104,21 +108,22 @@ const App = () => {
       );
     }
   };
-	
+
   // кнопка поиска фильмов
   const searchButton = (event) => {
     event.preventDefault();
     setDisplayCard(true);
-		displayDifferentWidth(width);
+
+    displayDifferentWidth(width);
     setFilteredMovies(
       fullMoviesLoc.filter((mov) => {
         return mov.nameRU.toLowerCase().includes(textSearch.toLowerCase());
       })
-	);
+    );
     if (textSearch.length === 0) {
       setValuesErr('Нужно ввести ключевое слово');
       setFilteredMovies('');
-			// setValuesNotMovies('');
+      // setValuesNotMovies('');
       setDisplayCard(false);
     }
     if (switchTumb === true) {
@@ -126,16 +131,15 @@ const App = () => {
     }
   };
 
-	useEffect(() => {
+  useEffect(() => {
     if (!filteredMovies.length) {
       setValuesNotMovies('Ничего не найдено');
+    } else {
+      setValuesNotMovies('');
     }
-		else {
-			setValuesNotMovies('');
-		}
   }, [filteredMovies]);
 
-	useEffect(() => {
+  useEffect(() => {
     if (textSearch.length === 0) {
       setFilteredMovies([]);
       setDisplayCard(false);
@@ -144,7 +148,7 @@ const App = () => {
     }
   }, [textSearch]);
 
-	//добавляем карточки по кнопке ЕЩЁ
+  //добавляем карточки по кнопке ЕЩЁ
   const buttonMoreHandle = () => {
     setSearchMovies(searchMovies + extraMovies);
   };
@@ -158,13 +162,17 @@ const App = () => {
         })
         .catch((err) => {
           localStorage.removeItem('moviesAllLoc');
-          console.log(`Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз. ${err}`);
+          console.log(
+            `Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз. ${err}`
+          );
         });
     }
-		
   }, [isLoggedIn]);
 
+  // console.log(switchSavedIcon);
+
   const AddToFavorites = (card) => {
+    setFavoritesLogoState(!favoritesLogoState);
     ourApi
       .postSavedForElectedMovies(card)
       .then((data) => {
@@ -189,19 +197,15 @@ const App = () => {
     }
   }, [isLoggedIn, filteredMovies, textSearch, switchTumb]);
 
-
-
-	//отображение карточек на разной ширине и ориентации экрана 
+  //отображение карточек на разной ширине и ориентации экрана
   useEffect(() => {
     window.addEventListener('resize', updateWidth);
-    displayDifferentWidth(width)
+    displayDifferentWidth(width);
     return () => window.removeEventListener('resize', updateWidth);
   }, [width]);
 
-
-
-	//основная страница с фильмами
-  React.useEffect(() => {
+  //основная страница с фильмами
+  useEffect(() => {
     if (switchTumb && adressMov) {
       setFilteredMovies(shortFilms(filteredMovies));
     }
@@ -216,6 +220,16 @@ const App = () => {
     }
   };
 
+  // console.log(filteredMovies, 'filteredMovies');
+  // console.log(savedMoviesDisplay, 'savedMoviesDisplay');
+  // console.log(favoritesLogoState, 'favoritesLogoState');
+  // console.log(savedMovies, 'savedMovies');
+
+  // useEffect(() => {
+  // 	if (filteredMovies.length === savedMoviesDisplay.length) {
+  // 		// setFavoritesLogoState(true)
+  // 	}
+  // }, [filteredMovies, savedMoviesDisplay]);
 
   const handleLoggedIn = () => {
     setIsLoggedIn(true);
@@ -344,7 +358,7 @@ const App = () => {
       .finally(() => {});
   }
 
-	//очищаем локалсторедж при выходе
+  //очищаем локалсторедж при выходе
   const handleExit = (event) => {
     event.preventDefault();
     auth.userSignout().then((data) => {
@@ -366,7 +380,6 @@ const App = () => {
     setIsInfoToolTip(false);
   }
 
-	
   return (
     <div className="page">
       {isPreloader ? <Preloader /> : ''}
@@ -394,14 +407,16 @@ const App = () => {
             savedMovies={savedMovies}
             isLoading={isLoading}
             valuesNotMovies={valuesNotMovies}
+            // switchSavedIcon={switchSavedIcon}
           />
           <ProtectedRoute
             path="/saved-movies"
             component={SavedMovies}
             isLoggedIn={isLoggedIn}
-						setDisplayCard={true}
-						// DeleteSavedMovies={DeleteSavedMovies}
+            setDisplayCard={true}
+            // DeleteSavedMovies={DeleteSavedMovies}
             // filteredMovies={filteredMovies}
+            savedMoviesDisplay={savedMoviesDisplay}
             valuesErr={valuesErr}
             shortFilms={shortFilms}
             searchButton={searchButton}
@@ -446,56 +461,55 @@ const App = () => {
 
 export default App;
 
+// useEffect(() => {
+//   if (resMovies.length === filteredMovies.length) {
+//     setButtonShowMore(false);
+//   }
+// 	else {
+// 		setButtonShowMore(true)
+// 	}
+// }, [resMovies, filteredMovies]);
 
-  // useEffect(() => {
-  //   if (resMovies.length === filteredMovies.length) {
-  //     setButtonShowMore(false);
-  //   }
-  // 	else {
-  // 		setButtonShowMore(true)
-  // 	}
-  // }, [resMovies, filteredMovies]);
+// useEffect(() => {
+//   if (filteredMovies.length) {
+//     setDisplayCard(true);
+//   }
+// }, [filteredMovies]);
 
-  // useEffect(() => {
-  //   if (filteredMovies.length) {
-  //     setDisplayCard(true);
-  //   }
-  // }, [filteredMovies]);
+// const windowUpdate = () => {
+// 	if (width >= 1280) {
+//     setSearchMovies(12);
+//     setExtraMovies(3);
+//   }
+//   if (width >= 768 && width < 1280) {
+//     setSearchMovies(8);
+//     setExtraMovies(2);
+//   }
+//   if (width >= 320 && width < 768) {
+//     setSearchMovies(12);
+//     setExtraMovies(3);
+//   }
+// }
 
-	// const windowUpdate = () => {
-	// 	if (width >= 1280) {
-  //     setSearchMovies(12);
-  //     setExtraMovies(3);
-  //   }
-  //   if (width >= 768 && width < 1280) {
-  //     setSearchMovies(8);
-  //     setExtraMovies(2);
-  //   }
-  //   if (width >= 320 && width < 768) {
-  //     setSearchMovies(12);
-  //     setExtraMovies(3);
-  //   }
-	// }
+// if (width >= 1280) {
+//   setSearchMovies(12);
+// }
+// if (width >= 768 && width <= 1280) {
+//   setSearchMovies(8);
+// }
+// if (width >= 320 && width <= 768) {
+//   setSearchMovies(12);
+// }
+// скрываем сообщения
+// useEffect(() => {
+//   if (filteredMovies.length > 0) {
+//     setValuesNotMovies('');
+//   }
+// }, [filteredMovies]);
 
-    // if (width >= 1280) {
-    //   setSearchMovies(12);
-    // }
-    // if (width >= 768 && width <= 1280) {
-    //   setSearchMovies(8);
-    // }
-    // if (width >= 320 && width <= 768) {
-    //   setSearchMovies(12);
-    // }
-  // скрываем сообщения
-  // useEffect(() => {
-  //   if (filteredMovies.length > 0) {
-  //     setValuesNotMovies('');
-  //   }
-  // }, [filteredMovies]);
-
-  // выводим сообщение что ничего не найдено
-  // useEffect(() => {
-  //   if (resMovies.length === 0) {
-  //     setValuesNotMovies('Ничего не найдено');
-  //   }
-  // }, [resMovies]);
+// выводим сообщение что ничего не найдено
+// useEffect(() => {
+//   if (resMovies.length === 0) {
+//     setValuesNotMovies('Ничего не найдено');
+//   }
+// }, [resMovies]);
