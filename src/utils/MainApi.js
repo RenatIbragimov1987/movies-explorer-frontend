@@ -44,20 +44,6 @@ deleteSavedForElectedMovies = (id) => {
 			Accept: 'application/json', 
 		},
 		credentials: 'include',
-		// body: JSON.stringify({
-	// 		country: data.country ? data.country : "Нет данных о стране",
-	// 		description: data.description ? data.description : "Нет данных об описании",
-	// 		director: data.director ? data.director : "Нет данных о режиссёре",
-	// 		duration: data.duration ? data.duration : "Нет данных о длительности",
-	// 		image: `https://api.nomoreparties.co/beatfilm-movies${data.image.url}` ? `https://api.nomoreparties.co/beatfilm-movies${data.image.url}` : "Нет данных об изображении",
-
-			// movieId: _id,
-	// 		nameEN: data.nameEN ? data.nameEN : "Нет названия на английском языке",
-	// 		nameRU: data.nameRU ? data.nameRU : "Нет названия на русском языке",
-	// 		thumbnail: `https://api.nomoreparties.co/beatfilm-movies${data.image.formats.thumbnail.url}` ? `https://api.nomoreparties.co/beatfilm-movies${data.image.formats.thumbnail.url}` : "Нет данных",
-	// 		trailerLink: data.trailerLink ? data.trailerLink : "Нет данных о трейлере",
-	// 		year: data.year ? data.year : "Нет данных о годе выхода",
-	// }),
 	}).then((res) => this._checkStatus(res));
 };
 
@@ -69,19 +55,6 @@ getSavedForElectedMovies = () => {
 			Accept: 'application/json',
 		},
 		credentials: 'include',
-	// 	body: JSON.stringify({
-	// 		country: data.country	? data.country : "Нет данных о стране",
-	// 		director: data.director ? data.director : "Нет данных о режиссёре",
-	// 		duration: data.duration ? data.duration : "Нет данных о длительности",
-	// 		year: data.year ? data.year : "Нет данных о годе выхода",
-	// 		description: data.description ? data.description : "Нет данных об описании",
-	// 		image: data.image ? data.image : "Нет данных об изображении",
-	// 		trailerLink: data.trailerLink ? data.trailerLink : "Нет данных о трейлере",
-	// 		thumbnail: data.thumbnail ? data.thumbnail : "Нет данных",
-	// 		movieId: data.id,
-	// 		nameRU: data.nameRU ? data.nameRU : "Нет названия на русском языке",
-	// 		nameEN: data.nameEN ? data.nameEN : "Нет названия на английском языке",
-	// }),
 	}).then((res) => this._checkStatus(res));
 };
 
