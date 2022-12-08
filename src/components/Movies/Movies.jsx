@@ -23,10 +23,9 @@ const Movies = ({
   displayCard,
   savedMovies,
 	likeButtonHandler,
-	textSearchSaved,
+	favoritesLogoState,
 	valuesNotMovies,
 	filteredMovies,
-	switchSavedIcon,
 }) => {
 
   return (
@@ -47,11 +46,13 @@ const Movies = ({
 
       {displayCard === true ? (
         <MoviesCardList
-				adress={adress}
+					adress={adress}
           savedMovies={savedMovies}
+					filteredMovies={filteredMovies}
           resMovies={resMovies}
           AddToFavorites={AddToFavorites}
-					switchSavedIcon={switchSavedIcon}
+					favoritesLogoState={favoritesLogoState}
+					
         />
       ) : (
         ''

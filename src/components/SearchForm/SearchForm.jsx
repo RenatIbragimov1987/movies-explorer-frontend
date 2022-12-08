@@ -7,7 +7,6 @@ import './SearchForm.css';
 const SearchForm = ({
   switchTumb,
   filterTumb,
-  isLoggedIn,
   textSearch,
   searchValue,
   textNoMovies,
@@ -68,7 +67,6 @@ const SearchForm = ({
         <FilterCheckbox
           filterTumb={filterTumb}
           filterTumbSaved={filterTumbSaved}
-          isLoggedIn={isLoggedIn}
           switchTumb={switchTumb}
         />
       </form>

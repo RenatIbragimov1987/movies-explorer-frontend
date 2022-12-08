@@ -65,6 +65,7 @@ class Auth {
     }).then(this._checkResponse);
   };
 
+	// данные клиента
   getUserInfo = () => {
     return fetch(`${this._backendUrl}/users/me`, {
       method: 'GET',

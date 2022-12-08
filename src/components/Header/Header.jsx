@@ -5,12 +5,9 @@ import { CurrentUserContext } from '../../contexts/CurentUserContext';
 import './Header.css';
 
 function Header({ modifier = '', modifierMovi = '', isLoggedIn }) {
-	const currentUser = React.useContext(CurrentUserContext);
 
   return (
-		
     <header className="header">
-			
       <Link to="/" className="header__logo">
         <img src={logoHeader} alt="logo" />
       </Link>

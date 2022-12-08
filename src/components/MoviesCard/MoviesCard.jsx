@@ -2,7 +2,7 @@ import React from 'react';
 import './MoviesCard.css';
 import DeleteSaveBtn from '../DeleteSaveBtn/DeleteSaveBtn';
 
-const MoviesCard = ({ ButtonSaved, card, AddToFavorites, savedMovies, DeleteSavedMovies, switchSavedIcon}) => {
+const MoviesCard = ({ ButtonSaved, card, AddToFavorites, savedMovies, DeleteSavedMovies, filteredMovies, favoritesLogoState}) => {
 	//перевод минут в ч.м.
 	const time = card.duration;
   function getTimeMovies(mins) {
@@ -13,6 +13,7 @@ const MoviesCard = ({ ButtonSaved, card, AddToFavorites, savedMovies, DeleteSave
 	const timeDuration = getTimeMovies(time)
 	const adressMov = window.location.pathname === '/movies';
 
+
   return (
     <li className="moviesCard">
       <div className="moviesCard__block">
@@ -20,7 +21,7 @@ const MoviesCard = ({ ButtonSaved, card, AddToFavorites, savedMovies, DeleteSave
           <h2 className="moviesCard__title">{card.nameRU}</h2>
           <p className="moviesCard__time">{timeDuration}</p>
         </div>
-        {adressMov ? <ButtonSaved switchSavedIcon={switchSavedIcon} savedMovies={savedMovies}  card={card} AddToFavorites={AddToFavorites}/> : <DeleteSaveBtn card={card} DeleteSavedMovies={DeleteSavedMovies}/>}
+        {adressMov ? <ButtonSaved filteredMovies={filteredMovies} favoritesLogoState={favoritesLogoState} savedMovies={savedMovies}  card={card} AddToFavorites={AddToFavorites}/> : <DeleteSaveBtn card={card} DeleteSavedMovies={DeleteSavedMovies}/>}
       </div>
       <a href={card.trailerLink} target="_blanc">
 			<img src={(card.image.url === undefined) ? (`${card.image}`) : `https://api.nomoreparties.co/${card.image.url}`} className="moviesCard__image"

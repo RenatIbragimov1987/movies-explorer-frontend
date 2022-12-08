@@ -51,7 +51,6 @@ const searchButtonSaved = (event) => {
 
 
 function DeleteSavedMovies(card){
-	console.log(card._id);
 	// const movi = filterSavedMoviesDisplay.find((item) => item.movieId);
 	ourApi
 		.deleteSavedForElectedMovies(card._id)
@@ -62,7 +61,7 @@ function DeleteSavedMovies(card){
 			console.error(err);
 		});
 };
-console.log(filterSavedMoviesDisplay);
+
 // useEffect(() => {
 // 	if (isLoggedIn && DeleteSavedMovies) {
 // 		setFilterSavedMoviesDisplay(filterSavedMoviesDisplay)
@@ -87,18 +86,18 @@ console.log(filterSavedMoviesDisplay);
 		}
   }, [shortFilms, switchTumb]);
 
-	useEffect(() => {
-		if (isLoggedIn){
-			ourApi
-			.getSavedForElectedMovies()
-			.then((card) => {
-				setFilterSavedMoviesDisplay(card);
-			})
-			.catch((err) => {
-				console.log(`ошибка отображения избранных фильмов ${err}`);
-			});
-		}
-	}, [isLoggedIn])
+	// useEffect(() => {
+	// 	if (isLoggedIn){
+	// 		ourApi
+	// 		.getSavedForElectedMovies()
+	// 		.then((card) => {
+	// 			setFilterSavedMoviesDisplay(card);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(`ошибка отображения избранных фильмов ${err}`);
+	// 		});
+	// 	}
+	// }, [isLoggedIn])
   return (
     <>
       <Header modifierMovi="header__nav_none" isLoggedIn={isLoggedIn} />
