@@ -1,0 +1,58 @@
+.moviesCard__checkbox{
+	display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 36px;
+  margin-left: 29px;
+  position: relative;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.moviesCard__checkbox:hover {
+	opacity: 70%;
+}
+
+.moviesCard__svg {
+  position: relative;
+  top: center;
+}
+
+/* .moviesCard__save {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border-radius: 36px;
+  vertical-align: top;
+  background: #f9f9f9;
+  transition: 0.2s;
+  cursor: pointer;
+  text-align: center;
+  margin: 0 auto;
+}
+.moviesCard__save:hover {
+	opacity: 70%;
+}
+.moviesCard__svg {
+  position: relative;
+  top: 8.5px;
+}
+.moviesCard__checkbox {
+  display: inline-block;
+  margin-left: 29px;
+  position: relative;
+}
+
+.moviesCard__checkbox .moviesCard__button {
+  display: block;
+  width: 0;
+  height: 0;
+}
+.moviesCard__checkbox .moviesCard__button:checked + .moviesCard__save {
+  background: #2be080;
+} */

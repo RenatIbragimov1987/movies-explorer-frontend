@@ -1,0 +1,17 @@
+.moviesCardDelete {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 36px;
+  margin-left: 29px;
+  position: relative;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+.moviesCardDelete:hover {
+	opacity: 70%;
+}
