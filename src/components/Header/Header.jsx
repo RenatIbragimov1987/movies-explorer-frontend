@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink  } from 'react-router-dom';
 import logoHeader from '../../images/logo.svg';
 import { CurrentUserContext } from '../../contexts/CurentUserContext';
 import './Header.css';
@@ -13,12 +13,12 @@ function Header({ modifier = '', modifierMovi = '', isLoggedIn }) {
       </Link>
 			{isLoggedIn && 
       <nav className='header__movies-block'>
-        <Link to="/movies" className="header__movies">
+        <NavLink activeClassName="header__navigation-active" to="/movies" className="header__movies">
           Фильмы
-        </Link>
-        <Link to="/saved-movies" className="header__saved-movies">
+        </NavLink>
+        <NavLink activeClassName="header__navigation-active" to="/saved-movies" className="header__saved-movies">
           Сохраненные фильмы
-        </Link>
+        </NavLink>
       </nav>
 			}
 			{!isLoggedIn &&

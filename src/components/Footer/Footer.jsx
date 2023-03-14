@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <h2 className="footer__header">
-        Учебный проект Яндекс.Практикум х BeatFilm.
+        Учебный проект BeatFilm.
       </h2>
       <div className="footer__content">
         <p className="footer__copyright">&copy;{year}</p>
@@ -16,7 +16,7 @@ const Footer = () => {
             target="_blanc"
             className="footer__link"
           >
-            Яндекс.Практикум
+            Яндекс
           </a>
           <a
             href="https://github.com/RenatIbragimov1987"

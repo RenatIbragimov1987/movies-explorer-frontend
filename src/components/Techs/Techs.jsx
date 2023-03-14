@@ -9,8 +9,7 @@ const Techs = () => {
       </div>
       <h2 className="techs__title">7 технологий</h2>
       <p className="techs__subtitle">
-        На курсе веб-разработки мы освоили технологии, которые применили в
-        дипломном проекте.
+        Изучил технологии, которые применил в проекте.
       </p>
       <ul className="techs__block">
         <li className="techs__block-title">HTML</li>

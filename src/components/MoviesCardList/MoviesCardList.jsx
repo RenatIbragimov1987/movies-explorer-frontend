@@ -1,16 +1,40 @@
 import React from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import ButtonSaved from '../ButtonSaved/ButtonSaved';
+// import ButtonSaved from '../ButtonSaved/ButtonSaved';
 
-const MoviesCardList = ({resMovies, AddToFavorites, savedMovies, favoritesLogoState, filteredMovies, filterSavedMoviesDisplay}) => {
+const MoviesCardList = ({
+  filterMoviesSaved,
+  resMovies,
+  buttonSavedActive,
+  AddToFavorites,
+  savedMovies,
+  filteredMovies,
+  filterSavedMoviesDisplay,
+	DeleteSavedMovies,
+	isLoggedIn,
+	setFilterSavedMoviesDisplay,
+
+}) => {
+
   return (
     <ul className="moviesCardList">
-			{resMovies.map((card, id) => (
-				<MoviesCard filteredMovies={filteredMovies} ButtonSaved={ButtonSaved} AddToFavorites={AddToFavorites} savedMovies={savedMovies} favoritesLogoState={favoritesLogoState}
-				 key={id} card={card}
-				/>
-		))}
+      {resMovies.map((card, id) => (
+        <MoviesCard
+          filterSavedMoviesDisplay={filterSavedMoviesDisplay}
+					setFilterSavedMoviesDisplay={setFilterSavedMoviesDisplay}
+          buttonSavedActive={buttonSavedActive}
+          filteredMovies={filteredMovies}
+          AddToFavorites={AddToFavorites}
+          savedMovies={savedMovies}
+          filterMoviesSaved={filterMoviesSaved}
+          resMovies={resMovies}
+					card={card}
+          key={id}
+					DeleteSavedMovies={DeleteSavedMovies}
+					isLoggedIn={isLoggedIn}
+        />
+      ))}
     </ul>
   );
 };

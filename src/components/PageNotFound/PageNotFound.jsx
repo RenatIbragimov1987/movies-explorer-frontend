@@ -10,14 +10,6 @@ function PageNotFound() {
 
 	const hist = useHistory();
 
-	// function goBack(evt) {
-	// 	evt.preventDefault();
-	// 	if (currentUser) {
-	// 		history.goBack();
-	// 	}
-		
-	// }
-
   return (
     <div className="not-found">
       <p className="not-found__num">404</p>

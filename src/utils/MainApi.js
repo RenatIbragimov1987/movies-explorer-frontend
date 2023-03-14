@@ -36,8 +36,8 @@ class MainApi {
 	}).then((res) => this._checkStatus(res));
 };
 
-deleteSavedForElectedMovies = (id) => {
-	return fetch(`${this._address}/movies/${id}/delete-card`, {
+deleteSavedForElectedMovies = (data) => {
+	return fetch(`${this._address}/movies/${data}/delete-card`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',

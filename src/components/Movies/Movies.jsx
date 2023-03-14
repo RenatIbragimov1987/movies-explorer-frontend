@@ -1,3 +1,4 @@
+import React from 'react';
 import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
@@ -5,6 +6,7 @@ import ButtonYet from '../ButtonYet/ButtonYet';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Navigation from '../Navigation/Navigation';
+import ourApi from '../../utils/MainApi';
 
 
 const Movies = ({
@@ -17,17 +19,21 @@ const Movies = ({
 	filterTumb,
 	switchTumb,
   buttonMoreHandle,
-  resMovies,
   AddToFavorites,
-  buttonShowMore,
   displayCard,
   savedMovies,
-	likeButtonHandler,
-	favoritesLogoState,
 	valuesNotMovies,
 	filteredMovies,
+	buttonSavedActive,
+	resMovies,
+	filterMoviesSaved,
+	filterSavedMoviesDisplay,
+	setFilterSavedMoviesDisplay,
+	DeleteSavedMovies,
 }) => {
 
+	
+	
   return (
     <>
       <Header modifierMovi="header__nav_none" isLoggedIn={isLoggedIn} />
@@ -49,10 +55,14 @@ const Movies = ({
 					adress={adress}
           savedMovies={savedMovies}
 					filteredMovies={filteredMovies}
-          resMovies={resMovies}
+          filterSavedMoviesDisplay={filterSavedMoviesDisplay}
           AddToFavorites={AddToFavorites}
-					favoritesLogoState={favoritesLogoState}
-					
+					buttonSavedActive={buttonSavedActive}
+					resMovies={resMovies}
+					filterMoviesSaved={filterMoviesSaved}
+					setFilterSavedMoviesDisplay={setFilterSavedMoviesDisplay}
+					DeleteSavedMovies={DeleteSavedMovies}
+					isLoggedIn={isLoggedIn}
         />
       ) : (
         ''

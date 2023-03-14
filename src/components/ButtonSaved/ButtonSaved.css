@@ -1,4 +1,28 @@
-.moviesCard__save {
+.moviesCard__checkbox{
+	display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 36px;
+  margin-left: 29px;
+  position: relative;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.moviesCard__checkbox:hover {
+	opacity: 70%;
+}
+
+.moviesCard__svg {
+  position: relative;
+  top: center;
+}
+
+/* .moviesCard__save {
   display: inline-block;
   box-sizing: border-box;
   width: 30px;
@@ -31,4 +55,4 @@
 }
 .moviesCard__checkbox .moviesCard__button:checked + .moviesCard__save {
   background: #2be080;
-}
+} */

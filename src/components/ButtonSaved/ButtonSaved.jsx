@@ -1,24 +1,58 @@
 import React from 'react';
 import './ButtonSaved.css';
-import img from '../../images/iconSave.svg';
+import imageColor from '../../images/imageColor.svg';
+import { useEffect } from 'react';
+import ourApi from '../../utils/MainApi';
+import imageNotColor from '../../images/imageNotColor.svg';
 
-const ButtonSaved = ({AddToFavorites, card, savedMovies, filteredMovies }) => {
+const ButtonSaved = ({
+	filterSavedMoviesDisplay,
+	setFilterSavedMoviesDisplay,
+	resMovies,
+	AddToFavorites,
+	card,
+	isLoggedIn,
+	favor,
+	favoritesLogoState,
+	setFavoritesLogoState,
+	DeleteSavedMovies,
+}) => {
 
-	const [favoritesLogoState, setFavoritesLogoState] = React.useState(false);
 
-	function favoritesLogo(){
+	const favoritesLogo = () => {
+		if (favoritesLogoState === false) {
+			// Добавление фильма в избранное
+			AddToFavorites(card);
+		} else {
+			// Удаление фильма из избранного
+			const savedMovie = filterSavedMoviesDisplay.find((movie) => movie.movieId === card.id);
+			if (savedMovie) {
+				DeleteSavedMovies(savedMovie);
+			}
+		}
 		setFavoritesLogoState(!favoritesLogoState);
-	}
+	};
+
+  // const favoritesLogo = () => {
+	// 	setFavoritesLogoState(!favoritesLogoState);
+	// 	if (favoritesLogoState === false) {
+	// 		setFavoritesLogoState(favoritesLogoState === true);
+  //     AddToFavorites(card);
+  //   } else {
+	// 		setFavoritesLogoState(favoritesLogoState === false);
+	// 		DeleteSavedMovies(card);
+	// 	}
+  // };
+	
 
   return (
-    <label className="moviesCard__checkbox" onChange={() => AddToFavorites(card)}>
-      <div>
-        <input type="checkbox" className="moviesCard__button" defaultChecked={favoritesLogoState} onChange={() => favoritesLogo(card)}/>
-        <span className="moviesCard__save">
-          <img src={img} alt="pic" className="moviesCard__svg" />
-        </span>
-      </div>
-    </label>
+		<button type='button' className="moviesCard__checkbox" onClick={favoritesLogo}>
+			{favoritesLogoState ?
+			<img src={imageColor} alt="pic" className='moviesCard__svg' />
+			:
+			<img src={imageNotColor} alt="pic" className='moviesCard__svg' />
+			}
+		</button>
   );
 };
 
